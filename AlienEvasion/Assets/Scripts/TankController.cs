@@ -8,12 +8,14 @@ public class TankController : MonoBehaviour
     // Variable to reference the Rigidbody of the tank
     Rigidbody2D tankRb;
 
-    // Rigidbodies of the three tires and the body
-    [SerializeField]
-    Rigidbody2D tire1Rb, tire2Rb, tire3Rb;
+    // Adjust the center of mass of the tank
+    [SerializeField] float centerOfMassX = 1.5f;
 
-    [SerializeField]
-    float tankSpeed = 20;
+    // Rigidbodies of the three tires and the body
+
+    [SerializeField] Rigidbody2D tire1Rb, tire2Rb, tire3Rb;
+
+    [SerializeField] float tankSpeed = 20;
 
     private float tankMovement;
 
@@ -22,8 +24,7 @@ public class TankController : MonoBehaviour
         // This code makes sure the center of mass of the tank is slightly on left
         // This makes sure that the tank does not fall down in the front because of long barrel
         tankRb = GetComponent<Rigidbody2D>();
-        tankRb.centerOfMass -= new Vector2(1, 0);
-
+        tankRb.centerOfMass -= new Vector2(centerOfMassX, 0);
     }
 
     void Update()
