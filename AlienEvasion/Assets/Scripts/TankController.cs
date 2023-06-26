@@ -25,6 +25,21 @@ public class TankController : MonoBehaviour
         // This makes sure that the tank does not fall down in the front because of long barrel
         tankRb = GetComponent<Rigidbody2D>();
         tankRb.centerOfMass -= new Vector2(centerOfMassX, 0);
+        FreezeTankMotion();
+    }
+
+    void FreezeTankMotion()
+    {
+        tire1Rb.freezeRotation = true;
+        tire2Rb.freezeRotation = true;
+        tire3Rb.freezeRotation = true;
+    }
+
+    void UnFreezeTankMotion()
+    {
+        tire1Rb.freezeRotation = false;
+        tire2Rb.freezeRotation = false;
+        tire3Rb.freezeRotation = false;
     }
 
     void Update()
@@ -38,6 +53,13 @@ public class TankController : MonoBehaviour
     {
         // Add Torque to all the tires and car body
         float tankTorque = tankMovement * tankSpeed * Time.fixedDeltaTime;
+
+
+        if (tankTorque != 0)
+        {
+            UnFreezeTankMotion();
+        }
+
         tire1Rb.AddTorque(tankTorque);
         tire2Rb.AddTorque(tankTorque);
         tire3Rb.AddTorque(tankTorque);
