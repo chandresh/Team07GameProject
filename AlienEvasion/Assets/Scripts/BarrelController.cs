@@ -22,8 +22,13 @@ public class BarrelController : MonoBehaviour
     // Get the shell prefab from the inspector
     [SerializeField] private GameObject shellPrefab;
 
+    // Get the tank game object from the inspector
+    [SerializeField] private GameObject tank;
+
     // Shell Barrel position offset
     [SerializeField] private Vector3 shellBarrelPositionOffset = new Vector3(1.2f, 0, 0);
+
+    [SerializeField] private float shellSpeed = 40f;
 
     // A timer for the delay between shots
     private float fireDelay = 0.5f;
@@ -81,13 +86,8 @@ public class BarrelController : MonoBehaviour
         // Get the shell's Rigidbody2D component
         Rigidbody2D shellRb = shell.GetComponent<Rigidbody2D>();
 
-        // Add impulse force to the shell in the direction calculated above
-        shellRb.AddForce(shellDirection, ForceMode2D.Impulse);
-
         // Set the shell's velocity and fire it
-        // float shellSpeed = 20f;
-        // shellRb.velocity = shellRb.transform.right * shellSpeed;
-
+        shellRb.velocity = tank.transform.right * shellSpeed;
     }
 
     void RotateUp()
