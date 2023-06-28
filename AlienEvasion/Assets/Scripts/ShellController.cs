@@ -32,7 +32,11 @@ public class ShellController : MonoBehaviour
         if (other.gameObject.tag == "Ground")
         {
             Destroy(gameObject);
-            Debug.Log("Shell hit " + other.gameObject.name);
+        }
+        else if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyShip")
+        {
+            Debug.Log("Shell hit " + other.gameObject.tag);
+            Destroy(other.gameObject);
         }
     }
 }

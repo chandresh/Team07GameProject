@@ -8,6 +8,8 @@ TagManager:
   - Shell
   - Barrel
   - Tank
+  - Enemy
+  - EnemyShip
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
