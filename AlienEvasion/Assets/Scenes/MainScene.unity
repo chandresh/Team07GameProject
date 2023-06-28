@@ -12566,6 +12566,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b563d6c708d54a3c94c1afefdd9296f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upAngle: 30
+  upBarrelPositionOffset: {x: -0.3, y: 0.8, z: 0}
+  shellPrefab: {fileID: 3666617689814886280, guid: 9328ee09abe604b1b998b1d243be370f,
+    type: 3}
+  shellBarrelPositionOffset: {x: 1.2, y: 0, z: 0}
 --- !u!1 &254254987
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,7 +13218,7 @@ GameObject:
   - component: {fileID: 1222480937}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
