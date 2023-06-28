@@ -5,6 +5,20 @@ using UnityEngine;
 public class ShellController : MonoBehaviour
 {
 
+    private Rigidbody2D shellRb;
+    [SerializeField] private float shellSpeed = 10f;
+
+    private GameObject tank;
+
+    private void Start()
+    {
+        shellRb = GetComponent<Rigidbody2D>();
+        tank = GameObject.Find("Tank");
+        float tankSpeed = tank.GetComponent<Rigidbody2D>().velocity.magnitude;
+        shellSpeed = shellSpeed + tankSpeed;
+        shellRb.velocity = transform.right * shellSpeed;
+    }
+
     // Destroy the shell when it leaves the screen
     private void OnBecameInvisible()
     {

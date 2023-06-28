@@ -11803,6 +11803,36 @@ MonoBehaviour:
   curveSmoothness: 0.446
   noiseStep: 0.5
   terrainBottom: 10
+--- !u!1 &52453174
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 52453175}
+  m_Layer: 0
+  m_Name: ShootingPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &52453175
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52453174}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.43, y: -0.06, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 180736276}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &85105304
 GameObject:
   m_ObjectHideFlags: 0
@@ -12456,6 +12486,7 @@ GameObject:
   - component: {fileID: 180736277}
   - component: {fileID: 180736278}
   - component: {fileID: 180736279}
+  - component: {fileID: 180736280}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -12473,7 +12504,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.172555, y: 1.0886903, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 52453175}
   m_Father: {fileID: 1222480935}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12568,11 +12600,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upAngle: 30
   upBarrelPositionOffset: {x: -0.3, y: 0.8, z: 0}
+--- !u!114 &180736280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180736275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cabe83e17c3aa494bba83da22e5deccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   shellPrefab: {fileID: 3666617689814886280, guid: 9328ee09abe604b1b998b1d243be370f,
     type: 3}
-  tank: {fileID: 1222480934}
-  shellBarrelPositionOffset: {x: 1.2, y: 0, z: 0}
-  shellSpeed: 40
+  shootingPosition: {fileID: 52453175}
 --- !u!1 &254254987
 GameObject:
   m_ObjectHideFlags: 0
