@@ -12455,6 +12455,7 @@ GameObject:
   - component: {fileID: 180736276}
   - component: {fileID: 180736277}
   - component: {fileID: 180736278}
+  - component: {fileID: 180736279}
   m_Layer: 0
   m_Name: Barrel
   m_TagString: Untagged
@@ -12469,7 +12470,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 180736275}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.172555, y: 1.0886903, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -12553,6 +12554,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.52, y: 1.13}
   m_EdgeRadius: 0
+--- !u!114 &180736279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180736275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b563d6c708d54a3c94c1afefdd9296f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &254254987
 GameObject:
   m_ObjectHideFlags: 0
