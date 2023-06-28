@@ -11,13 +11,13 @@ public class BarrelController : MonoBehaviour
 {
     // Default and 'up' angle for the barrel
     private float defaultAngle;
-    private float upAngle = 20f;
+    [SerializeField] private float upAngle = 30f;
 
     // Default and 'up' positions for the barrel
     private Vector3 defaultBarrelPosition, upBarrelPosition;
 
     // Offsets for the 'up' position
-    private Vector3 upBarrelPositionOffset = new Vector3(-0.15f, 0.5f, 0);
+    [SerializeField] private Vector3 upBarrelPositionOffset = new Vector3(-0.3f, 0.8f, 0);
 
     private void Start()
     {
