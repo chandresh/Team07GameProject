@@ -10,6 +10,8 @@ TagManager:
   - Tank
   - Enemy
   - EnemyShip
+  - AlienBomb
+  - PlayerParts
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - 
   - 
   - Ground
-  - 
-  - 
+  - AlienShip
+  - AlienBomb
   - 
   - 
   - 
