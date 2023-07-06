@@ -12040,7 +12040,7 @@ GameObject:
   - component: {fileID: 52453175}
   m_Layer: 0
   m_Name: ShootingPosition
-  m_TagString: Untagged
+  m_TagString: PlayerParts
   m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12072,7 +12072,7 @@ GameObject:
   - component: {fileID: 85105307}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: PlayerParts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12715,7 +12715,7 @@ GameObject:
   - component: {fileID: 180736280}
   m_Layer: 0
   m_Name: Barrel
-  m_TagString: Untagged
+  m_TagString: PlayerParts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12856,7 +12856,7 @@ GameObject:
   - component: {fileID: 254254991}
   m_Layer: 0
   m_Name: Tire03
-  m_TagString: Untagged
+  m_TagString: PlayerParts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13267,7 +13267,7 @@ GameObject:
   - component: {fileID: 1005249628}
   m_Layer: 0
   m_Name: Tire02
-  m_TagString: Untagged
+  m_TagString: PlayerParts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13482,7 +13482,7 @@ GameObject:
   - component: {fileID: 1152558791}
   m_Layer: 0
   m_Name: Tire01
-  m_TagString: Untagged
+  m_TagString: PlayerParts
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
