@@ -14,8 +14,6 @@ public class AlienBombController : MonoBehaviour
     // Destroy the bomb when it hits something
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("Bomb hit " + other.gameObject.tag);
-
         Destroy(gameObject);
 
         if (other.gameObject.CompareTag("PlayerParts"))
