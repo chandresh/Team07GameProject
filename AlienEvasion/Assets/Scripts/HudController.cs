@@ -15,12 +15,16 @@ public class HudController : MonoBehaviour
     [SerializeField]
     private Slider healthbar;
 
+    [SerializeField]
+    private Slider fuelbar;
+
     public void updateCurrency(int currency)
     {
         // update text value with the current currency value in player stats
-        currencyText.text = $"Currency: {currency.ToString()}";
+        currencyText.text = $"{currency.ToString()}";
     }
 
+    // called from player stat controller on creation
     public void setMaxHealth(int maxHealth)
     {
         healthbar.maxValue = maxHealth;
@@ -30,5 +34,17 @@ public class HudController : MonoBehaviour
     public void updateHealthBar(int health)
     {
         healthbar.value = health;
+    }
+
+    // called from player stat controller on creation
+    public void setMaxFuel(int maxFuel)
+    {
+        fuelbar.maxValue = maxFuel;
+        fuelbar.value = maxFuel;
+    }
+
+    public void updateFuel(int fuel)
+    {
+        fuelbar.value = fuel;
     }
 }

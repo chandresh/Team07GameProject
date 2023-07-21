@@ -9,6 +9,9 @@ public class PlayerStatsController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
+    public int maxFuel;
+    public int currentFuel;
+
     [SerializeField]
     private HudController hudController;
 
@@ -20,8 +23,14 @@ public class PlayerStatsController : MonoBehaviour
         maxHealth = 100;
         currentHealth = maxHealth;
 
-        // set max health hud
+        maxFuel = 100;
+        currentFuel = maxFuel;
+
+        // set max health in hud
         hudController.setMaxHealth(maxHealth);
+
+        // set max fuel in hud
+        hudController.setMaxFuel(maxFuel);
     }
 
     public void increaseCurrency(int amountToChange)
@@ -40,5 +49,13 @@ public class PlayerStatsController : MonoBehaviour
 
         // display changes in current health on health bar
         hudController.updateHealthBar(currentHealth);
+    }
+
+    public void changFuel(int fuelToChange)
+    {
+        currentFuel += fuelToChange;
+
+        // display changes in fuel on the hud
+        hudController.updateFuel(currentFuel);
     }
 }
