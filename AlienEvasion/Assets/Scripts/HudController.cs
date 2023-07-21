@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class HudController : MonoBehaviour
 {
@@ -11,21 +12,23 @@ public class HudController : MonoBehaviour
     [SerializeField]
     private TMP_Text currencyText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private Slider healthbar;
 
-    // Update is called once per frame
-    void Update()
-    {
-        updateCurrency();        
-    }
-
-    void updateCurrency()
+    public void updateCurrency(int currency)
     {
         // update text value with the current currency value in player stats
-        currencyText.text = $"Currency: {playerStats.currentCurrency.ToString()}";
+        currencyText.text = $"Currency: {currency.ToString()}";
+    }
+
+    public void setMaxHealth(int maxHealth)
+    {
+        healthbar.maxValue = maxHealth;
+        healthbar.value = maxHealth;
+    }
+
+    public void updateHealthBar(int health)
+    {
+        healthbar.value = health;
     }
 }
