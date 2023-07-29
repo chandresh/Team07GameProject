@@ -119,6 +119,10 @@ public class AudioManager : MonoBehaviour
     }
 
     /**
+     * Usage:
+     * Top level audio manager that exists on all scenes and doesn't get destroyed so that sounds can exist over scene changes (music etc)
+     * Child prefab on game objects for individual sounds (such as player shooting)
+     * 
      * Get audio manager instance
      * Example:
      *  1. Get top level
