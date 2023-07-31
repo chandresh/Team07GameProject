@@ -7,24 +7,41 @@ public class InstructionsTextController : MonoBehaviour
 {
     //public Text instructionText;
     public Image[] instructionImages;
-    public float displayDuration = 5f;
+    public float firstImageDuration = 5f;
+    private bool isFirstImageShown = false;
 
     private void Start()
     {
-        foreach (var image in instructionImages)
+        // Show the first image at the start of the game
+        if (instructionImages.Length > 0)
         {
-            image.gameObject.SetActive(true);
+            instructionImages[0].gameObject.SetActive(true);
+            Invoke("HideFirstImage", firstImageDuration);
         }
-
-        // Hide the instructions after a delay (displayDuration)
-        Invoke("HideInstructions", displayDuration);
     }
 
-    private void HideInstructions()
+    private void HideFirstImage()
     {
-        foreach (var image in instructionImages)
+        // Hide the first image after the firstImageDuration
+        if (instructionImages.Length > 0)
         {
-            image.gameObject.SetActive(false);
+            instructionImages[0].gameObject.SetActive(false);
+            isFirstImageShown = true; // Set the flag to true after hiding the first image
+        }
+    }
+
+    private void Update()
+    {
+        // Show the next image indefinitely after the first image has been shown
+        if (isFirstImageShown)
+        {
+            if (instructionImages.Length > 1)
+            {
+                for (int i = 1; i < instructionImages.Length; i++)
+                {
+                    instructionImages[i].gameObject.SetActive(true);
+                }
+            }
         }
     }
 }
