@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class InstructionsTextController : MonoBehaviour
 {
-    public Text instructionText;
+    //public Text instructionText;
+    public Image[] instructionImages;
     public float displayDuration = 5f;
 
     private void Start()
     {
-        // Show the instructions at the start of the game
-        instructionText.gameObject.SetActive(true);
+        foreach (var image in instructionImages)
+        {
+            image.gameObject.SetActive(true);
+        }
 
         // Hide the instructions after a delay (displayDuration)
         Invoke("HideInstructions", displayDuration);
@@ -19,6 +22,9 @@ public class InstructionsTextController : MonoBehaviour
 
     private void HideInstructions()
     {
-        instructionText.gameObject.SetActive(false);
+        foreach (var image in instructionImages)
+        {
+            image.gameObject.SetActive(false);
+        }
     }
 }
