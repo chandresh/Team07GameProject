@@ -7,8 +7,11 @@ public class InstructionsTextController : MonoBehaviour
 {
     //public Text instructionText;
     public Image[] instructionImages;
-    public float firstImageDuration = 5f;
+    public float firstImageDuration = 10f;
     private bool isFirstImageShown = false;
+
+    //Keep track of which buttons have been clicked
+    private HashSet<KeyCode> clickedButtons = new HashSet<KeyCode>();
 
     private void Start()
     {
@@ -43,5 +46,33 @@ public class InstructionsTextController : MonoBehaviour
                 }
             }
         }
+        if (!isFirstImageShown && (Input.GetKeyDown(KeyCode.I)))
+        {
+            HideFirstImage();
+        }
+        // Check if any of the specified keys or mouse buttons are pressed
+        if (!isFirstImageShown)
+        {
+            CheckButtonsClicked();
+        }
+
     }
+    private void CheckButtonsClicked()
+    {
+        // Add all the specified keys and mouse buttons to the HashSet
+        if (Input.GetKeyDown(KeyCode.W)) clickedButtons.Add(KeyCode.W);
+        if (Input.GetKeyDown(KeyCode.A)) clickedButtons.Add(KeyCode.A);
+        if (Input.GetKeyDown(KeyCode.S)) clickedButtons.Add(KeyCode.S);
+        if (Input.GetKeyDown(KeyCode.D)) clickedButtons.Add(KeyCode.D);
+        if (Input.GetMouseButtonDown(0)) clickedButtons.Add(KeyCode.Mouse0);
+        if (Input.GetKeyDown(KeyCode.Escape)) clickedButtons.Add(KeyCode.Escape);
+        // if (Input.GetKeyDown(KeyCode.I)) clickedButtons.Add(KeyCode.I);
+
+        // Check if all the specified buttons have been clicked
+        if (clickedButtons.Count == 6)
+        {
+            HideFirstImage();
+        }
+    }
+
 }

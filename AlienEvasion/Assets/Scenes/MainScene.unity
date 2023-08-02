@@ -14471,7 +14471,7 @@ MonoBehaviour:
   instructionImages:
   - {fileID: 1434923933}
   - {fileID: 803795161}
-  firstImageDuration: 5
+  firstImageDuration: 10
 --- !u!1001 &1114474768
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15060,7 +15060,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bec4de05a0c49794481b487744d3a18f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d5662ee2c50379c4c8192aa3b331f7cb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15095,7 +15095,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 156.5, y: 283}
-  m_SizeDelta: {x: 930.9983, y: 199}
+  m_SizeDelta: {x: 959, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1533805675
 GameObject:
@@ -15693,7 +15693,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 442, y: 357}
+  m_SizeDelta: {x: 749, y: 357}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1838756878
 MonoBehaviour:
@@ -15714,7 +15714,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c559c1864ac75ff42a9575ada744c47e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65603845529fc574285e6463517175f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
