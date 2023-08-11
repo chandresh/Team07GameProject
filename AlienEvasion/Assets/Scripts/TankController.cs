@@ -17,6 +17,8 @@ public class TankController : MonoBehaviour
 
     [SerializeField] float tankSpeed = 20;
 
+    [SerializeField] ParticleSystem particleSystem;
+
     private float tankMovement;
 
     void Start()
@@ -64,5 +66,20 @@ public class TankController : MonoBehaviour
         tire2Rb.AddTorque(tankTorque);
         tire3Rb.AddTorque(tankTorque);
         tankRb.AddTorque(tankTorque);
+    }
+
+    private void OnEnable()
+    {
+        AlienEventsManager.OnAlienGotHit += Celebrate;
+    }
+
+    private void OnDisable()
+    {
+        AlienEventsManager.OnAlienGotHit -= Celebrate;
+    }
+
+    void Celebrate()
+    {
+        particleSystem.Play();
     }
 }
