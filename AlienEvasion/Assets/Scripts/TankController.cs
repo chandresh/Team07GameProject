@@ -13,7 +13,7 @@ public class TankController : MonoBehaviour
     private float totalDistanceTraveled = 0f;
 
     // Convertion factor from unity units to kilometers
-    private readonly float unityToKilometers = 0.01f;
+    private float unityToKilometers = 0.01f;
 
     // Adjust the center of mass of the tank
     [SerializeField] float centerOfMassX = 1.5f;
@@ -22,9 +22,10 @@ public class TankController : MonoBehaviour
 
     [SerializeField] Rigidbody2D tire1Rb, tire2Rb, tire3Rb;
 
-    [SerializeField] float tankSpeed = 20;
+    [SerializeField] float tankSpeed = 200;
 
     [SerializeField] ParticleSystem particleSystem;
+    [SerializeField] GameManager gameManager;
 
     private float tankMovement;
 
@@ -75,14 +76,13 @@ public class TankController : MonoBehaviour
         tankRb.AddTorque(tankTorque);
 
         SetTotalDistanceTraveled();
+        gameManager.TotalDistanceTraveled = GetTotalDistanceTraveled();
     }
     public void SetTotalDistanceTraveled()
     {
         float horizontalVelocity = tankRb.velocity.x;
         float distanceThisFrame = horizontalVelocity * Time.fixedDeltaTime * unityToKilometers;
         totalDistanceTraveled += Mathf.Abs(distanceThisFrame);
-
-        Debug.Log("Total distance traveled: " + GetTotalDistanceTraveled());
     }
 
     public float GetTotalDistanceTraveled()
@@ -93,15 +93,22 @@ public class TankController : MonoBehaviour
     private void OnEnable()
     {
         AlienEventsManager.OnAlienGotHit += Celebrate;
+        GameManager.OnLevelChanged += TestLevelChange;
     }
 
     private void OnDisable()
     {
         AlienEventsManager.OnAlienGotHit -= Celebrate;
+        GameManager.OnLevelChanged -= TestLevelChange;
     }
 
     void Celebrate()
     {
         particleSystem.Play();
+    }
+
+    void TestLevelChange(int level)
+    {
+        Debug.Log("Level changed to " + level);
     }
 }
