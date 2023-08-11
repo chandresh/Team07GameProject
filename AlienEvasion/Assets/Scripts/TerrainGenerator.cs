@@ -83,4 +83,5 @@ public class TerrainGenerator : MonoBehaviour
         spriteShapeController.spline.InsertPointAt(levelLength, new Vector3(lastPosition.x, transform.position.y - terrainBottom));
         spriteShapeController.spline.InsertPointAt(levelLength + 1, new Vector3(transform.position.x, transform.position.y - terrainBottom));
     }
+
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,12 @@ public class TankController : MonoBehaviour
 
     // Variable to reference the Rigidbody of the tank
     Rigidbody2D tankRb;
+
+    // Variable to keep track of the total distance traveled by the tank
+    private float totalDistanceTraveled = 0f;
+
+    // Convertion factor from unity units to kilometers
+    private readonly float unityToKilometers = 0.01f;
 
     // Adjust the center of mass of the tank
     [SerializeField] float centerOfMassX = 1.5f;
@@ -66,6 +73,21 @@ public class TankController : MonoBehaviour
         tire2Rb.AddTorque(tankTorque);
         tire3Rb.AddTorque(tankTorque);
         tankRb.AddTorque(tankTorque);
+
+        SetTotalDistanceTraveled();
+    }
+    public void SetTotalDistanceTraveled()
+    {
+        float horizontalVelocity = tankRb.velocity.x;
+        float distanceThisFrame = horizontalVelocity * Time.fixedDeltaTime * unityToKilometers;
+        totalDistanceTraveled += Mathf.Abs(distanceThisFrame);
+
+        Debug.Log("Total distance traveled: " + GetTotalDistanceTraveled());
+    }
+
+    public float GetTotalDistanceTraveled()
+    {
+        return (float)Math.Round(totalDistanceTraveled, 1);
     }
 
     private void OnEnable()
