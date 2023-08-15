@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class HudController : MonoBehaviour
 {
     [SerializeField]
-    private PlayerStatsController playerStats;
-
-    [SerializeField]
     private TMP_Text currencyText;
 
     [SerializeField]
@@ -17,6 +14,18 @@ public class HudController : MonoBehaviour
 
     [SerializeField]
     private Slider fuelbar;
+
+    private int currentHealth;
+
+    private void Start()
+    {
+        setMaxHealth(100);
+    }
+
+    private void OnEnable()
+    {
+        PlayerEventsManager.OnPlayerGotHit += updateHealthBar;
+    }
 
     public void updateCurrency(int currency)
     {
@@ -29,11 +38,13 @@ public class HudController : MonoBehaviour
     {
         healthbar.maxValue = maxHealth;
         healthbar.value = maxHealth;
+        currentHealth = maxHealth;
     }
 
-    public void updateHealthBar(int health)
+    public void updateHealthBar(int healthChange)
     {
-        healthbar.value = health;
+        currentHealth += healthChange;
+        healthbar.value = currentHealth;
     }
 
     // called from player stat controller on creation

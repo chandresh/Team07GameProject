@@ -12,6 +12,9 @@ public class PlayerStatsController : MonoBehaviour
     public int maxFuel;
     public int currentFuel;
 
+    public int maxShield;
+    public int currentShield;
+
     [SerializeField]
     private HudController hudController;
 
@@ -26,11 +29,25 @@ public class PlayerStatsController : MonoBehaviour
         maxFuel = 100;
         currentFuel = maxFuel;
 
+        maxShield = 100;
+        currentShield = 0;
+
         // set max health in hud
         hudController.setMaxHealth(maxHealth);
 
         // set max fuel in hud
         hudController.setMaxFuel(maxFuel);
+    }
+
+    private void OnEnable()
+    {
+        PlayerEventsManager.OnPlayerGotHit += healthChange;
+    }
+
+    private void healthChange(int amount)
+    {
+        Debug.Log(amount);
+        currentHealth += amount;
     }
 
     public void increaseCurrency(int amountToChange)
@@ -46,9 +63,6 @@ public class PlayerStatsController : MonoBehaviour
     {
         // set current health
         currentHealth += amountToChange;
-
-        // display changes in current health on health bar
-        hudController.updateHealthBar(currentHealth);
     }
 
     public void changFuel(int fuelToChange)
