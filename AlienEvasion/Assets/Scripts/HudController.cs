@@ -15,30 +15,44 @@ public class HudController : MonoBehaviour
     [SerializeField]
     private Slider fuelbar;
 
+    private int currentCurrency;
     private int currentHealth;
+    private int currentShields;
+    private int currentFuel;
 
     private void Start()
     {
-        setMaxHealth(100);
+        setMaxStats(100, 100, 100);
     }
 
     private void OnEnable()
     {
+        //subscribe to delegates
         PlayerEventsManager.OnPlayerGotHit += updateHealthBar;
+        PlayerEventsManager.OnPlayerGainsCurrency += updateCurrency;
+        PlayerEventsManager.OnPlayerFuelChange += updateCurrency;
     }
 
-    public void updateCurrency(int currency)
+    public void setMaxStats(int maxHealth, int maxShield, int maxFuel)
     {
-        // update text value with the current currency value in player stats
-        currencyText.text = $"{currency.ToString()}";
-    }
-
-    // called from player stat controller on creation
-    public void setMaxHealth(int maxHealth)
-    {
+        // set starting health values
         healthbar.maxValue = maxHealth;
         healthbar.value = maxHealth;
         currentHealth = maxHealth;
+
+        // set starting fuel values
+        fuelbar.maxValue = maxFuel;
+        fuelbar.value = maxFuel;
+        currentFuel = maxFuel;
+
+        currentCurrency = 0;
+    }
+
+    public void updateCurrency(int currencyChange)
+    {
+        // update currency and reflect in UI
+        currentCurrency += currencyChange;
+        currencyText.text = $"{currentCurrency.ToString()}";
     }
 
     public void updateHealthBar(int healthChange)
@@ -47,15 +61,9 @@ public class HudController : MonoBehaviour
         healthbar.value = currentHealth;
     }
 
-    // called from player stat controller on creation
-    public void setMaxFuel(int maxFuel)
+    public void updateFuel(int fuelChange)
     {
-        fuelbar.maxValue = maxFuel;
-        fuelbar.value = maxFuel;
-    }
-
-    public void updateFuel(int fuel)
-    {
-        fuelbar.value = fuel;
+        currentFuel += fuelChange;
+        fuelbar.value = currentFuel;
     }
 }

@@ -15,9 +15,6 @@ public class PlayerStatsController : MonoBehaviour
     public int maxShield;
     public int currentShield;
 
-    [SerializeField]
-    private HudController hudController;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -31,45 +28,27 @@ public class PlayerStatsController : MonoBehaviour
 
         maxShield = 100;
         currentShield = 0;
-
-        // set max health in hud
-        hudController.setMaxHealth(maxHealth);
-
-        // set max fuel in hud
-        hudController.setMaxFuel(maxFuel);
     }
 
     private void OnEnable()
     {
         PlayerEventsManager.OnPlayerGotHit += healthChange;
+        PlayerEventsManager.OnPlayerFuelChange += changeFuel;
+        PlayerEventsManager.OnPlayerGainsCurrency += increaseCurrency;
     }
 
     private void healthChange(int amount)
     {
-        Debug.Log(amount);
         currentHealth += amount;
     }
 
     public void increaseCurrency(int amountToChange)
     {
-        // update currency
         currentCurrency += amountToChange;
-
-        // change currency in hud
-        hudController.updateCurrency(currentCurrency);
     }
 
-    public void changeHealth(int amountToChange)
-    {
-        // set current health
-        currentHealth += amountToChange;
-    }
-
-    public void changFuel(int fuelToChange)
+    public void changeFuel(int fuelToChange)
     {
         currentFuel += fuelToChange;
-
-        // display changes in fuel on the hud
-        hudController.updateFuel(currentFuel);
     }
 }
