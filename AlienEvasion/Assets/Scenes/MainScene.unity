@@ -13781,7 +13781,8 @@ MonoBehaviour:
   currentHealth: 0
   maxFuel: 0
   currentFuel: 0
-  hudController: {fileID: 2142089878}
+  maxShield: 0
+  currentShield: 0
 --- !u!4 &799679875
 Transform:
   m_ObjectHideFlags: 0
@@ -20788,7 +20789,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3187687322a04322b2030a91bed9804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 799679874}
   currencyText: {fileID: 1591807560}
   healthbar: {fileID: 1187697818}
   fuelbar: {fileID: 378227351}
