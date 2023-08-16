@@ -15,11 +15,6 @@ public class HudController : MonoBehaviour
     [SerializeField]
     private Slider fuelbar;
 
-    private int currentCurrency;
-    private int currentHealth;
-    private int currentShields;
-    private int currentFuel;
-
     private void Start()
     {
         setMaxStats(100, 100, 100);
@@ -28,42 +23,36 @@ public class HudController : MonoBehaviour
     private void OnEnable()
     {
         //subscribe to delegates
-        PlayerEventsManager.OnPlayerGotHit += updateHealthBar;
-        PlayerEventsManager.OnPlayerGainsCurrency += updateCurrency;
-        PlayerEventsManager.OnPlayerFuelChange += updateCurrency;
+        PlayerStatsController.SetPlayerHealth += updateHealthBar;
+        PlayerStatsController.SetPlayerFuel += updateFuelBar;
+        PlayerStatsController.SetPlayerCurrency += updateCurrencyText;
     }
 
-    public void setMaxStats(int maxHealth, int maxShield, int maxFuel)
+    private void setMaxStats(int maxHealth, int maxShield, int maxFuel)
     {
         // set starting health values
         healthbar.maxValue = maxHealth;
         healthbar.value = maxHealth;
-        currentHealth = maxHealth;
 
         // set starting fuel values
         fuelbar.maxValue = maxFuel;
         fuelbar.value = maxFuel;
-        currentFuel = maxFuel;
 
-        currentCurrency = 0;
+        currencyText.text = "0";
     }
 
-    public void updateCurrency(int currencyChange)
+    private void updateCurrencyText(int currentCurrency)
     {
-        // update currency and reflect in UI
-        currentCurrency += currencyChange;
         currencyText.text = $"{currentCurrency.ToString()}";
     }
 
-    public void updateHealthBar(int healthChange)
+    private void updateHealthBar(int currentHealth, int currentShield)
     {
-        currentHealth += healthChange;
         healthbar.value = currentHealth;
     }
 
-    public void updateFuel(int fuelChange)
+    private void updateFuelBar(int currentFuel)
     {
-        currentFuel += fuelChange;
         fuelbar.value = currentFuel;
     }
 }
