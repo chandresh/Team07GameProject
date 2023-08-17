@@ -13459,6 +13459,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenuCanvas: {fileID: 0}
+  healthUpgradeBlocks: []
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13472,6 +13473,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenuCanvas: {fileID: 0}
+  healthUpgradeBlocks: []
 --- !u!1 &568261318
 GameObject:
   m_ObjectHideFlags: 0
@@ -13502,6 +13504,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upgradeMenuCanvas: {fileID: 179030966583010221}
+  healthUpgradeBlocks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &568261320
 Transform:
   m_ObjectHideFlags: 0

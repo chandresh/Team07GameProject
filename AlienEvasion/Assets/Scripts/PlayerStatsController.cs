@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerStatsController : MonoBehaviour
 {
-    private int currentCurrency;
+    public int currentCurrency;
 
     private int maxHealth;
     private int currentHealth;
