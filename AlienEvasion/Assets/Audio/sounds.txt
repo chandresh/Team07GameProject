@@ -1,0 +1,8 @@
+ambient 	- distant-warfare-51848.mp3 	- https://pixabay.com/sound-effects/distant-warfare-51848/
+move turret	- tank-turret-rotate-14879.mp3 	- https://pixabay.com/sound-effects/tank-turret-rotate-14879/
+move tank	- tank_ride_stereo-18744.mp3	- https://pixabay.com/sound-effects/tank-ride-stereo-18744/
+fire shell	- shotgun-firing-3-14483.mp3	- https://pixabay.com/sound-effects/shotgun-firing-3-14483/
+shell explosion - hq-explosion-6288.mp3		- https://pixabay.com/sound-effects/hq-explosion-6288/
+ufo hover	- ufo-landing-93632.mp3		- https://pixabay.com/sound-effects/ufo-landing-93632/
+ufo shoot	- lasergun-100580.mp3		- https://pixabay.com/sound-effects/lasergun-100580/
+coin pickup	- coin-upaif-14631.mp3		- https://pixabay.com/sound-effects/coin-upaif-14631/
