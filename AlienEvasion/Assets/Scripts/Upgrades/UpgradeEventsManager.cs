@@ -42,8 +42,4 @@ public class UpgradeEventsManager : MonoBehaviour
     {
         OnAirstrikeUpgrade?.Invoke();
     }
-    //public static void PlayerGotHit(int healthAmount)
-    //{
-    //    OnPlayerGotHit?.Invoke(healthAmount);
-    //}
 }
