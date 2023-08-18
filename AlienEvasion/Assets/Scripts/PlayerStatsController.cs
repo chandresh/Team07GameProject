@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerStatsController : MonoBehaviour
 {
-    public int currentCurrency;
+    static public int currentCurrency;
 
     private int maxHealth;
     private int currentHealth;
@@ -19,6 +19,9 @@ public class PlayerStatsController : MonoBehaviour
     public static event Action<int> SetPlayerFuel;
     public static event Action<int, int> SetPlayerHealth;
     public static event Action<int> SetPlayerCurrency;
+
+    // upgrade events
+    public static event Action<int> ChangePlayerMaxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +45,17 @@ public class PlayerStatsController : MonoBehaviour
         PlayerEventsManager.OnPlayerGainsCurrency += increaseCurrency;
 
         AlienEventsManager.OnAlienGotHit += increaseCurrencyFromAlienHit;
+
+        // upgrade events
+        UpgradeEventsManager.OnHealthUpgrade += healthUpgraded;
+    }
+
+    private void healthUpgraded()
+    {
+        // increase players maximum health
+        maxHealth += 20;
+
+        ChangePlayerMaxHealth?.Invoke(maxHealth);
     }
 
     private void increaseCurrencyFromAlienHit()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UpgradeController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UpgradeController : MonoBehaviour
     [SerializeField] private GameObject[] turretUpgradeBlocks;
     [SerializeField] private GameObject[] airstrikeUpgradeBlocks;
 
+    [SerializeField] private TMP_Text healthUpgradeText;
+
     private bool isOpen;
 
     private int healthUpgradeLevel;
@@ -23,6 +26,14 @@ public class UpgradeController : MonoBehaviour
     private int shotSpeedUpgradeLevel;
     private int turretUpgradeLevel;
     private int airstrikeUpgradeLevel;
+
+    private int healthUpgradeCost;
+    private int armourUpgradeCost;
+    private int shieldUpgradeCost;
+    private int shotSpeedUpgradeCost;
+    private int turretUpgradeCost;
+    private int airstrikeUpgradeCost;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -34,6 +45,14 @@ public class UpgradeController : MonoBehaviour
         shotSpeedUpgradeLevel = 0;
         turretUpgradeLevel = 0;
         airstrikeUpgradeLevel = 0;
+
+        // initial upgrade costs
+        healthUpgradeCost = 50;
+        armourUpgradeCost = 50;
+        shieldUpgradeCost = 50;
+        shotSpeedUpgradeCost = 50;
+        turretUpgradeCost = 50;
+        airstrikeUpgradeCost = 50;
     }
 
     private void Update()
@@ -59,13 +78,26 @@ public class UpgradeController : MonoBehaviour
         // make sure that upgrade isn't fully upgraded
         if (healthUpgradeLevel < 3)
         {
-            // check that player has enough currency to make purchase
-            
+            // check player can afford upgrade
+            if (checkCanAffordUpgrade(healthUpgradeCost))
+            {
+                // increase upgrade level
+                healthUpgradeLevel++;
 
-            // increase upgrade level
-            healthUpgradeLevel++;
+                changeBlockColour(healthUpgradeLevel - 1, healthUpgradeBlocks);
 
-            changeBlockColour(healthUpgradeLevel - 1, healthUpgradeBlocks);
+                // upgrade health
+                UpgradeEventsManager.UpgradeHealth();
+
+                // remove cost of upgrade
+                PlayerEventsManager.PlayerGainsCurrency(-healthUpgradeCost);
+
+                // increase cost for next upgrade
+                healthUpgradeCost += 50;
+
+                // reflect new cost in upgrade box
+                updateCostText(healthUpgradeCost, healthUpgradeText);
+            }
         }
     }
 
@@ -129,11 +161,21 @@ public class UpgradeController : MonoBehaviour
         }
     }
 
+    private bool checkCanAffordUpgrade(int upgradeCost)
+    {
+        return upgradeCost < PlayerStatsController.currentCurrency;
+    }
+
     private void changeBlockColour(int blockPosition, GameObject[] blocks)
     {
         blocks[blockPosition]
             .GetComponent<Image>()
             .color = new Color32(47, 120, 39, 255);
+    }
+
+    private void updateCostText(int newCost, TMP_Text textBlock)
+    {
+        textBlock.text = newCost.ToString();
     }
 
     private void openUpgradeMenu()

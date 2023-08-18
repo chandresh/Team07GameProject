@@ -26,6 +26,9 @@ public class HudController : MonoBehaviour
         PlayerStatsController.SetPlayerHealth += updateHealthBar;
         PlayerStatsController.SetPlayerFuel += updateFuelBar;
         PlayerStatsController.SetPlayerCurrency += updateCurrencyText;
+
+        // events triggered from upgrades
+        PlayerStatsController.ChangePlayerMaxHealth += updateMaxHealth;
     }
 
     private void setMaxStats(int maxHealth, int maxShield, int maxFuel)
@@ -54,5 +57,10 @@ public class HudController : MonoBehaviour
     private void updateFuelBar(int currentFuel)
     {
         fuelbar.value = currentFuel;
+    }
+
+    private void updateMaxHealth(int newMaxHealth)
+    {
+        healthbar.maxValue = newMaxHealth;
     }
 }
