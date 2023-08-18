@@ -17,6 +17,7 @@ public class UpgradeController : MonoBehaviour
     [SerializeField] private GameObject[] airstrikeUpgradeBlocks;
 
     [SerializeField] private TMP_Text healthUpgradeText;
+    [SerializeField] private TMP_Text shieldUpgradeText;
 
     private bool isOpen;
 
@@ -106,10 +107,7 @@ public class UpgradeController : MonoBehaviour
         // make sure that upgrade isn't fully upgraded
         if (armourUpgradeLevel < 3)
         {
-            // increase upgrade level
-            armourUpgradeLevel++;
-
-            changeBlockColour(armourUpgradeLevel - 1, armourUpgradeBlocks);
+            
         }
     }
 
@@ -118,10 +116,26 @@ public class UpgradeController : MonoBehaviour
         // make sure that upgrade isn't fully upgraded
         if (shieldUpgradeLevel < 3)
         {
-            // increase upgrade level
-            shieldUpgradeLevel++;
+            // check player can afford upgrade
+            if (checkCanAffordUpgrade(shieldUpgradeCost))
+            {
+                // increase upgrade level
+                shieldUpgradeLevel++;
 
-            changeBlockColour(shieldUpgradeLevel - 1, shieldUpgradeBlocks);
+                changeBlockColour(shieldUpgradeLevel - 1, shieldUpgradeBlocks);
+
+                // upgrade shield
+                UpgradeEventsManager.UpgradeShield();
+
+                // remove cost of upgrade
+                PlayerEventsManager.PlayerGainsCurrency(-shieldUpgradeCost);
+
+                // increase cost for next upgrade
+                shieldUpgradeCost += 50;
+
+                // reflect new cost in upgrade box
+                updateCostText(shieldUpgradeCost, shieldUpgradeText);
+            }
         }
     }
 

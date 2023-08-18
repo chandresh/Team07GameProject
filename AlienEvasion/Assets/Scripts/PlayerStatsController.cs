@@ -34,7 +34,7 @@ public class PlayerStatsController : MonoBehaviour
         maxFuel = 100;
         currentFuel = maxFuel;
 
-        maxShield = 100;
+        maxShield = 0;
         currentShield = 0;
     }
 
@@ -48,6 +48,7 @@ public class PlayerStatsController : MonoBehaviour
 
         // upgrade events
         UpgradeEventsManager.OnHealthUpgrade += healthUpgraded;
+        UpgradeEventsManager.OnShieldUpgrade += shieldUpgraded;
     }
 
     private void healthUpgraded()
@@ -56,6 +57,16 @@ public class PlayerStatsController : MonoBehaviour
         maxHealth += 20;
 
         ChangePlayerMaxHealth?.Invoke(maxHealth);
+    }
+
+    private void shieldUpgraded()
+    {
+        Debug.Log("called");
+        // increase max shield
+        maxShield += 20;
+        currentShield = maxShield;
+
+        SetPlayerHealth?.Invoke(currentHealth, currentShield);
     }
 
     private void increaseCurrencyFromAlienHit()

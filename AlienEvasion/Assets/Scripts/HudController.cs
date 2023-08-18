@@ -58,6 +58,7 @@ public class HudController : MonoBehaviour
     private void updateHealthBar(int currentHealth, int currentShield)
     {
         healthbar.value = currentHealth;
+        shieldBar.value = currentShield;
     }
 
     private void updateFuelBar(int currentFuel)
