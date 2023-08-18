@@ -15,6 +15,9 @@ public class HudController : MonoBehaviour
     [SerializeField]
     private Slider fuelbar;
 
+    [SerializeField]
+    private Slider shieldBar;
+
     private void Start()
     {
         setMaxStats(100, 100, 100);
@@ -41,6 +44,9 @@ public class HudController : MonoBehaviour
         fuelbar.maxValue = maxFuel;
         fuelbar.value = maxFuel;
 
+        shieldBar.maxValue = maxShield;
+        shieldBar.value = 0;
+
         currencyText.text = "0";
     }
 
@@ -57,6 +63,11 @@ public class HudController : MonoBehaviour
     private void updateFuelBar(int currentFuel)
     {
         fuelbar.value = currentFuel;
+    }
+
+    private void updateShieldBar(int currentShield)
+    {
+        shieldBar.value = currentShield;
     }
 
     private void updateMaxHealth(int newMaxHealth)
