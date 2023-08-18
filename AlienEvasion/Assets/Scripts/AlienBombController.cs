@@ -23,9 +23,10 @@ public class AlienBombController : MonoBehaviour
 
             // gets the player stats controller and calls change health
             // reducing the players health by 10
-            GameObject playerController = GameObject.Find("PlayerStatsController");
-            PlayerStatsController controller = (PlayerStatsController)playerController.GetComponent(typeof(PlayerStatsController));
-            controller.changeHealth(-10);
+            //GameObject playerController = GameObject.Find("PlayerStatsController");
+            //PlayerStatsController controller = (PlayerStatsController)playerController.GetComponent(typeof(PlayerStatsController));
+            //controller.changeHealth(-10);
+            PlayerEventsManager.PlayerGotHit(-10);
         }
     }
 }

@@ -13776,12 +13776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3a696c2b50e34e33847c7d73a73771b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentCurrency: 0
-  maxHealth: 0
-  currentHealth: 0
-  maxFuel: 0
-  currentFuel: 0
-  hudController: {fileID: 2142089878}
 --- !u!4 &799679875
 Transform:
   m_ObjectHideFlags: 0
@@ -13968,7 +13962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 540, y: 352.5}
+  m_AnchoredPosition: {x: 344, y: 333}
   m_SizeDelta: {x: 296, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &869254912
@@ -19722,7 +19716,7 @@ MonoBehaviour:
   tire1Rb: {fileID: 1152558792}
   tire2Rb: {fileID: 1005249629}
   tire3Rb: {fileID: 254254992}
-  tankSpeed: 20
+  tankSpeed: 200
   particleSystem: {fileID: 1071471909}
   gameManager: {fileID: 1222290768}
 --- !u!114 &1222480938
@@ -19893,8 +19887,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 156.5, y: 283}
-  m_SizeDelta: {x: 959, y: 160}
+  m_AnchoredPosition: {x: 80.1, y: 282.1}
+  m_SizeDelta: {x: 806.2224, y: 161.79742}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1533805675
 GameObject:
@@ -20788,7 +20782,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3187687322a04322b2030a91bed9804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 799679874}
   currencyText: {fileID: 1591807560}
   healthbar: {fileID: 1187697818}
   fuelbar: {fileID: 378227351}

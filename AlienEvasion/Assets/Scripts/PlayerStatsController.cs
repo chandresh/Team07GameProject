@@ -1,19 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStatsController : MonoBehaviour
 {
-    public int currentCurrency;
+    private int currentCurrency;
 
-    public int maxHealth;
-    public int currentHealth;
+    private int maxHealth;
+    private int currentHealth;
 
-    public int maxFuel;
-    public int currentFuel;
+    private int maxFuel;
+    private int currentFuel;
 
-    [SerializeField]
-    private HudController hudController;
+    private int maxShield;
+    private int currentShield;
+
+    public static event Action<int> SetPlayerFuel;
+    public static event Action<int, int> SetPlayerHealth;
+    public static event Action<int> SetPlayerCurrency;
 
     // Start is called before the first frame update
     void Start()
@@ -26,36 +31,64 @@ public class PlayerStatsController : MonoBehaviour
         maxFuel = 100;
         currentFuel = maxFuel;
 
-        // set max health in hud
-        hudController.setMaxHealth(maxHealth);
-
-        // set max fuel in hud
-        hudController.setMaxFuel(maxFuel);
+        maxShield = 100;
+        currentShield = 0;
     }
 
-    public void increaseCurrency(int amountToChange)
+    private void OnEnable()
     {
-        // update currency
+        PlayerEventsManager.OnPlayerGotHit += healthChange;
+        PlayerEventsManager.OnPlayerFuelChange += changeFuel;
+        PlayerEventsManager.OnPlayerGainsCurrency += increaseCurrency;
+
+        AlienEventsManager.OnAlienGotHit += increaseCurrencyFromAlienHit;
+    }
+
+    private void increaseCurrencyFromAlienHit()
+    {
+        increaseCurrency(10);
+        Debug.Log("hit alien");
+    }
+
+    private void healthChange(int healthChange)
+    {
+        if (currentShield > 0)
+        {
+            // the player has some shields to take form first
+            if (currentShield > healthChange)
+            {
+                // shield can take all the damage taken
+                currentShield += healthChange;
+            }
+            else
+            {
+                // shields can only take some of the damage
+                healthChange += currentShield;
+                currentShield = 0;
+                currentHealth += healthChange;
+            }
+        }
+        else
+        {
+            // player has no shields
+            currentHealth += healthChange;
+        }
+
+        SetPlayerHealth?.Invoke(currentHealth, currentShield);
+    }
+
+    private void increaseCurrency(int amountToChange)
+    {
         currentCurrency += amountToChange;
 
-        // change currency in hud
-        hudController.updateCurrency(currentCurrency);
+        SetPlayerCurrency?.Invoke(currentCurrency);
     }
 
-    public void changeHealth(int amountToChange)
-    {
-        // set current health
-        currentHealth += amountToChange;
 
-        // display changes in current health on health bar
-        hudController.updateHealthBar(currentHealth);
-    }
-
-    public void changFuel(int fuelToChange)
+    public void changeFuel(int fuelToChange)
     {
         currentFuel += fuelToChange;
 
-        // display changes in fuel on the hud
-        hudController.updateFuel(currentFuel);
+        SetPlayerFuel?.Invoke(currentFuel);
     }
 }

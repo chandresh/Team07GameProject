@@ -7,9 +7,6 @@ using UnityEngine.UI;
 public class HudController : MonoBehaviour
 {
     [SerializeField]
-    private PlayerStatsController playerStats;
-
-    [SerializeField]
     private TMP_Text currencyText;
 
     [SerializeField]
@@ -18,33 +15,44 @@ public class HudController : MonoBehaviour
     [SerializeField]
     private Slider fuelbar;
 
-    public void updateCurrency(int currency)
+    private void Start()
     {
-        // update text value with the current currency value in player stats
-        currencyText.text = $"{currency.ToString()}";
+        setMaxStats(100, 100, 100);
     }
 
-    // called from player stat controller on creation
-    public void setMaxHealth(int maxHealth)
+    private void OnEnable()
     {
+        //subscribe to delegates
+        PlayerStatsController.SetPlayerHealth += updateHealthBar;
+        PlayerStatsController.SetPlayerFuel += updateFuelBar;
+        PlayerStatsController.SetPlayerCurrency += updateCurrencyText;
+    }
+
+    private void setMaxStats(int maxHealth, int maxShield, int maxFuel)
+    {
+        // set starting health values
         healthbar.maxValue = maxHealth;
         healthbar.value = maxHealth;
-    }
 
-    public void updateHealthBar(int health)
-    {
-        healthbar.value = health;
-    }
-
-    // called from player stat controller on creation
-    public void setMaxFuel(int maxFuel)
-    {
+        // set starting fuel values
         fuelbar.maxValue = maxFuel;
         fuelbar.value = maxFuel;
+
+        currencyText.text = "0";
     }
 
-    public void updateFuel(int fuel)
+    private void updateCurrencyText(int currentCurrency)
     {
-        fuelbar.value = fuel;
+        currencyText.text = $"{currentCurrency.ToString()}";
+    }
+
+    private void updateHealthBar(int currentHealth, int currentShield)
+    {
+        healthbar.value = currentHealth;
+    }
+
+    private void updateFuelBar(int currentFuel)
+    {
+        fuelbar.value = currentFuel;
     }
 }
