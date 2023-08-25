@@ -18,6 +18,7 @@ public class UpgradeController : MonoBehaviour
 
     [SerializeField] private TMP_Text healthUpgradeText;
     [SerializeField] private TMP_Text shieldUpgradeText;
+    [SerializeField] private TMP_Text armourUpgradeText;
 
     private bool isOpen;
 
@@ -107,7 +108,26 @@ public class UpgradeController : MonoBehaviour
         // make sure that upgrade isn't fully upgraded
         if (armourUpgradeLevel < 3)
         {
-            
+            // check player can afford upgrade
+            if (checkCanAffordUpgrade(armourUpgradeCost))
+            {
+                // increase upgrade level
+                armourUpgradeLevel++;
+
+                changeBlockColour(armourUpgradeLevel - 1, armourUpgradeBlocks);
+
+                // upgrade health
+                UpgradeEventsManager.UpgradeArmour();
+
+                // remove cost of upgrade
+                PlayerEventsManager.PlayerGainsCurrency(-armourUpgradeCost);
+
+                // increase cost for next upgrade
+                armourUpgradeCost += 50;
+
+                // reflect new cost in upgrade box
+                updateCostText(armourUpgradeCost, armourUpgradeText);
+            }
         }
     }
 

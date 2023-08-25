@@ -13467,6 +13467,7 @@ MonoBehaviour:
   airstrikeUpgradeBlocks: []
   healthUpgradeText: {fileID: 0}
   shieldUpgradeText: {fileID: 0}
+  armourUpgradeText: {fileID: 0}
 --- !u!114 &519420034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13488,6 +13489,7 @@ MonoBehaviour:
   airstrikeUpgradeBlocks: []
   healthUpgradeText: {fileID: 0}
   shieldUpgradeText: {fileID: 0}
+  armourUpgradeText: {fileID: 0}
 --- !u!1 &568261318
 GameObject:
   m_ObjectHideFlags: 0
@@ -13544,6 +13546,7 @@ MonoBehaviour:
   - {fileID: 179030966648419664}
   healthUpgradeText: {fileID: 179030966799680549}
   shieldUpgradeText: {fileID: 179030966416369225}
+  armourUpgradeText: {fileID: 179030967005466885}
 --- !u!4 &568261320
 Transform:
   m_ObjectHideFlags: 0

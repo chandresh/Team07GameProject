@@ -16,6 +16,8 @@ public class PlayerStatsController : MonoBehaviour
     private int maxShield;
     private int currentShield;
 
+    private int currentArmour;
+
     public static event Action<int> SetPlayerFuel;
     public static event Action<int, int> SetPlayerHealth;
     public static event Action<int> SetPlayerCurrency;
@@ -36,6 +38,8 @@ public class PlayerStatsController : MonoBehaviour
 
         maxShield = 0;
         currentShield = 0;
+
+        currentArmour = 0;
     }
 
     private void OnEnable()
@@ -49,6 +53,12 @@ public class PlayerStatsController : MonoBehaviour
         // upgrade events
         UpgradeEventsManager.OnHealthUpgrade += healthUpgraded;
         UpgradeEventsManager.OnShieldUpgrade += shieldUpgraded;
+        UpgradeEventsManager.onArmourUpgrade += armourUpgraded;
+    }
+
+    private void armourUpgraded()
+    {
+        currentArmour++;
     }
 
     private void healthUpgraded()
@@ -77,26 +87,29 @@ public class PlayerStatsController : MonoBehaviour
 
     private void healthChange(int healthChange)
     {
+        // remove current armour value from incoming damage
+        int incDamage = healthChange -= currentArmour;
+
         if (currentShield > 0)
         {
             // the player has some shields to take form first
-            if (currentShield > healthChange)
+            if (currentShield > incDamage)
             {
                 // shield can take all the damage taken
-                currentShield += healthChange;
+                currentShield += incDamage;
             }
             else
             {
                 // shields can only take some of the damage
-                healthChange += currentShield;
+                incDamage += currentShield;
                 currentShield = 0;
-                currentHealth += healthChange;
+                currentHealth += incDamage;
             }
         }
         else
         {
             // player has no shields
-            currentHealth += healthChange;
+            currentHealth += incDamage;
         }
 
         SetPlayerHealth?.Invoke(currentHealth, currentShield);
