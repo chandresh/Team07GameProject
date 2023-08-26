@@ -10,6 +10,7 @@ public class PlayerEventsManager : MonoBehaviour
     public static event Action<Vector3> OnPlayerLoseLife;
     public static event Action<int> OnPlayerGainsCurrency;
     public static event Action<int> OnPlayerFuelChange;
+    public static event Action<int> OnPlayerShieldChange;
 
     public static void PlayerGotHit(int healthAmount)
     {
@@ -29,5 +30,10 @@ public class PlayerEventsManager : MonoBehaviour
     public static void PlayerFuelChange(int amount)
     {
         OnPlayerFuelChange?.Invoke(amount);
+    }
+
+    public static void PlayerShieldChange(int shieldAmount)
+    {
+        OnPlayerShieldChange?.Invoke(shieldAmount);
     }
 }

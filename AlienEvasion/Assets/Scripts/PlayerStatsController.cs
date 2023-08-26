@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerStatsController : MonoBehaviour
 {
-    private int currentCurrency;
+    static public int currentCurrency;
 
     private int maxHealth;
     private int currentHealth;
@@ -16,9 +16,14 @@ public class PlayerStatsController : MonoBehaviour
     private int maxShield;
     private int currentShield;
 
+    private int currentArmour;
+
     public static event Action<int> SetPlayerFuel;
     public static event Action<int, int> SetPlayerHealth;
     public static event Action<int> SetPlayerCurrency;
+
+    // upgrade events
+    public static event Action<int> ChangePlayerMaxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +36,10 @@ public class PlayerStatsController : MonoBehaviour
         maxFuel = 100;
         currentFuel = maxFuel;
 
-        maxShield = 100;
+        maxShield = 0;
         currentShield = 0;
+
+        currentArmour = 0;
     }
 
     private void OnEnable()
@@ -42,6 +49,34 @@ public class PlayerStatsController : MonoBehaviour
         PlayerEventsManager.OnPlayerGainsCurrency += increaseCurrency;
 
         AlienEventsManager.OnAlienGotHit += increaseCurrencyFromAlienHit;
+
+        // upgrade events
+        UpgradeEventsManager.OnHealthUpgrade += healthUpgraded;
+        UpgradeEventsManager.OnShieldUpgrade += shieldUpgraded;
+        UpgradeEventsManager.onArmourUpgrade += armourUpgraded;
+    }
+
+    private void armourUpgraded()
+    {
+        currentArmour++;
+    }
+
+    private void healthUpgraded()
+    {
+        // increase players maximum health
+        maxHealth += 20;
+
+        ChangePlayerMaxHealth?.Invoke(maxHealth);
+    }
+
+    private void shieldUpgraded()
+    {
+        Debug.Log("called");
+        // increase max shield
+        maxShield += 20;
+        currentShield = maxShield;
+
+        SetPlayerHealth?.Invoke(currentHealth, currentShield);
     }
 
     private void increaseCurrencyFromAlienHit()
@@ -52,26 +87,29 @@ public class PlayerStatsController : MonoBehaviour
 
     private void healthChange(int healthChange)
     {
+        // remove current armour value from incoming damage
+        int incDamage = healthChange -= currentArmour;
+
         if (currentShield > 0)
         {
             // the player has some shields to take form first
-            if (currentShield > healthChange)
+            if (currentShield > incDamage)
             {
                 // shield can take all the damage taken
-                currentShield += healthChange;
+                currentShield += incDamage;
             }
             else
             {
                 // shields can only take some of the damage
-                healthChange += currentShield;
+                incDamage += currentShield;
                 currentShield = 0;
-                currentHealth += healthChange;
+                currentHealth += incDamage;
             }
         }
         else
         {
             // player has no shields
-            currentHealth += healthChange;
+            currentHealth += incDamage;
         }
 
         SetPlayerHealth?.Invoke(currentHealth, currentShield);
