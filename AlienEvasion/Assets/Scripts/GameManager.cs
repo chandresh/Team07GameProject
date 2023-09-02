@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public int CurrentLevel { get; private set; }
     public float TotalDistanceTraveled { get; set; }
 
-    private readonly float[] levelDistances = { 1f, 2f, 3f, 4f, 5f };
+    private readonly float[] levelDistances = { 1f, 3f, 6f, 10f, 15f };
 
     public void Update()
     {
