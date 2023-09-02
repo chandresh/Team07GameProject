@@ -29,6 +29,8 @@ public class TankController : MonoBehaviour
 
     private float tankMovement;
 
+    private AudioManager am;
+
     void Start()
     {
         // This code makes sure the center of mass of the tank is slightly on left
@@ -36,6 +38,7 @@ public class TankController : MonoBehaviour
         tankRb = GetComponent<Rigidbody2D>();
         tankRb.centerOfMass -= new Vector2(centerOfMassX, 0);
         FreezeTankMotion();
+        am = FindObjectOfType<AudioManager>();
     }
 
     void FreezeTankMotion()
@@ -57,6 +60,14 @@ public class TankController : MonoBehaviour
         // Get the value of Horizontal movement
         // Minus it as we want the tires to rotate opposite of it
         tankMovement = -Input.GetAxis("Horizontal");
+        if (Math.Abs(Input.GetAxis("Horizontal")) > 0)
+        {
+            if (!am.isPlaying("tank-move")) am.Play("tank-move");
+        }
+        else
+        {
+            if (am.isPlaying("tank-move")) am.Stop("tank-move");
+        }
     }
 
     private void FixedUpdate()

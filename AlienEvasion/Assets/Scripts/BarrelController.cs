@@ -19,6 +19,13 @@ public class BarrelController : MonoBehaviour
     // Offsets for the 'up' position
     [SerializeField] private Vector3 upBarrelPositionOffset = new Vector3(-0.3f, 0.8f, 0);
 
+    private AudioManager am;
+
+    private void Awake()
+    {
+        am = FindObjectOfType<AudioManager>();
+    }
+
     private void Start()
     {
         // Store the initial angle of the barrel as the default
@@ -55,6 +62,7 @@ public class BarrelController : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, 0, upAngle);
         // Move the barrel a little bit up and to the left
         transform.localPosition = upBarrelPosition;
+        if (!am.isPlaying("turret-move")) am.Play("turret-move");
     }
 
     void RotateDown()
@@ -62,6 +70,7 @@ public class BarrelController : MonoBehaviour
         // Set the barrel's rotation to the default angle and position
         transform.localEulerAngles = new Vector3(0, 0, defaultAngle);
         transform.localPosition = defaultBarrelPosition;
+        if (!am.isPlaying("turret-move")) am.Play("turret-move");
     }
 
     void Rotate(float angle)

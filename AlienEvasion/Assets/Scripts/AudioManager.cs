@@ -18,7 +18,6 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds) CreateAudioSource(s, gameObject);
-        // Debug.Log($"{LogPrefix} created AudioSource object for each sound");
     }
 
     private void Start()
@@ -55,14 +54,12 @@ public class AudioManager : MonoBehaviour
     {
         Sound sound = GetSound(name);
         sound.source.Stop();
-        // Debug.Log($"{LogPrefix} Stopped sound {name} from playing");
         return sound;
     }
 
     public void StopAllSounds()
     {
         foreach (Sound s in sounds) s.source.Stop();
-        // Debug.Log($"{LogPrefix} Stopped all sounds from playing");
     }
 
     public Sound SetSoundLocation(string name, Vector3 location)
@@ -101,6 +98,12 @@ public class AudioManager : MonoBehaviour
         return sound;
     }
 
+    public bool isPlaying(string name)
+    {
+        Sound sound = GetSound(name);
+        return sound.source.isPlaying;
+    }
+
     private Sound GetSound(string name)
     {
         Sound sound = Array.Find(sounds, s => s.name == name);
@@ -122,21 +125,21 @@ public class AudioManager : MonoBehaviour
      * Usage:
      * Top level audio manager that exists on all scenes and doesn't get destroyed so that sounds can exist over scene changes (music etc)
      * Child prefab on game objects for individual sounds (such as player shooting)
-     * 
+     *
      * Get audio manager instance
      * Example:
      *  1. Get top level
      *      AudioManager am = FindObjectOfType<AudioManager>();
      *  2. Get Child prefab
-     *      AudioManager am = this.gameObject.GetComponentInChildren<AudioManager>(); 
-            if (am == null) return;
-     * 
+     *      AudioManager am = this.gameObject.GetComponentInChildren<AudioManager>();
+     *      if (am == null) return;
+     *
      * Playing sound (name is a mandatory param) (returns sound object)
      *  Sound sound = am.Play(name:"Sound");
-     * 
+     *
      * Updating sound (name is the only mandatory param) (returns sound object)
      *  Sound sound = am.Update(name:"Sound", volume:0.5f, pitch:1.2f, loop:false);
-     * 
+     *
      * Bind location of 3d sound to location of game object in update method (returns sound object)
      *  Sound sound = am.BindSoundToGameObjectLocation(name:"Sound", gameObject: Player)
      */
