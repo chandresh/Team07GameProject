@@ -34,6 +34,12 @@ public class GameManager : MonoBehaviour
         return CurrentLevel >= levelDistances.Length;
     }
 
+    public void InitializeData()
+    {
+        CurrentLevel = 0;
+        TotalDistanceTraveled = 0;
+    }
+
     private void ChangeLevel()
     {
         CurrentLevel++;
@@ -41,6 +47,8 @@ public class GameManager : MonoBehaviour
         {
             OnGameWon?.Invoke();
             SceneManager.LoadScene("MainMenu");
+            // Reset the game data
+            InitializeData();
         }
         else
         {
