@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,12 +29,18 @@ public class GameManager : MonoBehaviour
         return CurrentLevel < levelDistances.Length && TotalDistanceTraveled >= levelDistances[CurrentLevel];
     }
 
+    private bool IsGameWon()
+    {
+        return CurrentLevel >= levelDistances.Length;
+    }
+
     private void ChangeLevel()
     {
         CurrentLevel++;
-        if (CurrentLevel >= levelDistances.Length)
+        if (IsGameWon())
         {
             OnGameWon?.Invoke();
+            SceneManager.LoadScene("MainMenu");
         }
         else
         {
