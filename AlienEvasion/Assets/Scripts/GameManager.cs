@@ -7,10 +7,12 @@ using UnityEngine.Events;
 public class GameManager : MonoBehaviour
 {
     public static event Action<int> OnLevelChanged;
+    public static event Action OnGameWon;
     public int CurrentLevel { get; private set; }
     public float TotalDistanceTraveled { get; set; }
 
-    private readonly float[] levelDistances = { 1f, 3f, 6f, 10f, 15f };
+    // private readonly float[] levelDistances = { 1f, 3f, 6f, 10f, 14f, 20f };
+    private readonly float[] levelDistances = { 1f, 2f, 3f, 4f, 5f, 6f };
 
     public void Update()
     {
@@ -29,7 +31,14 @@ public class GameManager : MonoBehaviour
     private void ChangeLevel()
     {
         CurrentLevel++;
-        OnLevelChanged?.Invoke(CurrentLevel);
+        if (CurrentLevel >= levelDistances.Length)
+        {
+            OnGameWon?.Invoke();
+        }
+        else
+        {
+            OnLevelChanged?.Invoke(CurrentLevel);
+        }
     }
 }
 
