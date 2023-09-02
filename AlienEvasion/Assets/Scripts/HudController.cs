@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HudController : MonoBehaviour
 {
     [SerializeField]
-    private TMP_Text currencyText;
+    private TMP_Text currencyText, LevelText;
 
     [SerializeField]
     private Slider healthbar;
@@ -30,8 +30,21 @@ public class HudController : MonoBehaviour
         PlayerStatsController.SetPlayerFuel += updateFuelBar;
         PlayerStatsController.SetPlayerCurrency += updateCurrencyText;
 
+        // Subscribe to level change event
+        GameManager.OnLevelChanged += updateLevelUI;
+
         // events triggered from upgrades
         PlayerStatsController.ChangePlayerMaxHealth += updateMaxHealth;
+    }
+
+    private void OnDisable()
+    {
+        //unsubscribe to delegates
+        PlayerStatsController.SetPlayerHealth -= updateHealthBar;
+        PlayerStatsController.SetPlayerFuel -= updateFuelBar;
+        PlayerStatsController.SetPlayerCurrency -= updateCurrencyText;
+        GameManager.OnLevelChanged -= updateLevelUI;
+        PlayerStatsController.ChangePlayerMaxHealth -= updateMaxHealth;
     }
 
     private void setMaxStats(int maxHealth, int maxShield, int maxFuel)
@@ -64,6 +77,11 @@ public class HudController : MonoBehaviour
     private void updateFuelBar(int currentFuel)
     {
         fuelbar.value = currentFuel;
+    }
+
+    private void updateLevelUI(int level)
+    {
+        LevelText.text = $"Level: {level}";
     }
 
     private void updateShieldBar(int currentShield)

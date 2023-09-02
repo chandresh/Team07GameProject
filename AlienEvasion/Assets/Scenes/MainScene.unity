@@ -21197,6 +21197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currencyText: {fileID: 1591807560}
+  LevelText: {fileID: 1202735955}
   healthbar: {fileID: 1187697818}
   fuelbar: {fileID: 378227351}
   shieldBar: {fileID: 1092571869}
