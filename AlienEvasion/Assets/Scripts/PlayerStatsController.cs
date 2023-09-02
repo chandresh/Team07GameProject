@@ -71,7 +71,7 @@ public class PlayerStatsController : MonoBehaviour
 
     private void shieldUpgraded()
     {
-        Debug.Log("called");
+        // Debug.Log("called");
         // increase max shield
         maxShield += 20;
         currentShield = maxShield;
@@ -82,7 +82,7 @@ public class PlayerStatsController : MonoBehaviour
     private void increaseCurrencyFromAlienHit()
     {
         increaseCurrency(10);
-        Debug.Log("hit alien");
+        // Debug.Log("hit alien");
     }
 
     private void healthChange(int healthChange)

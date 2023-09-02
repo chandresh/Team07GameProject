@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<int> OnLevelChanged;
     public static event Action OnGameWon;
-    public int CurrentLevel { get; private set; }
-    public float TotalDistanceTraveled { get; set; }
+    public static int CurrentLevel = 0;
+    public static float TotalDistanceTraveled;
 
     // private readonly float[] levelDistances = { 1f, 3f, 6f, 10f, 14f, 20f };
     private readonly float[] levelDistances = { 1f, 2f, 3f, 4f, 5f, 6f };
@@ -44,8 +44,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             OnLevelChanged?.Invoke(CurrentLevel);
         }
     }
+
 }
 

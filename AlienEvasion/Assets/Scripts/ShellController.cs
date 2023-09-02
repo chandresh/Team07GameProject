@@ -36,7 +36,7 @@ public class ShellController : MonoBehaviour
         else if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyShip")
         {
             AlienEventsManager.AlienIsHit();
-            Debug.Log("Shell hit " + other.gameObject.tag);
+            // Debug.Log("Shell hit " + other.gameObject.tag);
             Destroy(other.gameObject);
         }
     }

@@ -76,7 +76,7 @@ public class TankController : MonoBehaviour
         tankRb.AddTorque(tankTorque);
 
         SetTotalDistanceTraveled();
-        gameManager.TotalDistanceTraveled = GetTotalDistanceTraveled();
+        GameManager.TotalDistanceTraveled = GetTotalDistanceTraveled();
     }
     public void SetTotalDistanceTraveled()
     {
@@ -110,5 +110,6 @@ public class TankController : MonoBehaviour
     void TestLevelChange(int level)
     {
         Debug.Log("Level changed to " + level);
+        Debug.Log("Total distance traveled " + GetTotalDistanceTraveled());
     }
 }

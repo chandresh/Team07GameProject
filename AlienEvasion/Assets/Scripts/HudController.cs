@@ -30,6 +30,9 @@ public class HudController : MonoBehaviour
         PlayerStatsController.SetPlayerFuel += updateFuelBar;
         PlayerStatsController.SetPlayerCurrency += updateCurrencyText;
 
+        // Get the current level from the GameManager
+        updateLevelUI(GameManager.CurrentLevel);
+
         // Subscribe to level change event
         GameManager.OnLevelChanged += updateLevelUI;
 

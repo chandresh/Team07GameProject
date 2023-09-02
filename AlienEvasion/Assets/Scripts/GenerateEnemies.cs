@@ -29,7 +29,7 @@ public class GenerateEnemies : MonoBehaviour
         if (hit.collider != null)
         {
             float terrainHeight = hit.point.y;
-            Debug.Log("Terrain height " + spawnDistance + " meters away is: " + terrainHeight);
+            // Debug.Log("Terrain height " + spawnDistance + " meters away is: " + terrainHeight);
 
             Vector3 spawnPosition = new Vector3(transform.position.x + spawnDistance, positionY + hit.point.y, 0);
             Instantiate(prefab, spawnPosition, Quaternion.identity);
@@ -49,7 +49,7 @@ public class GenerateEnemies : MonoBehaviour
         if (hit.collider != null)
         {
             float terrainHeight = hit.point.y;
-            Debug.Log("Terrain height " + spawnDistance + " meters away is: " + terrainHeight);
+            // Debug.Log("Terrain height " + spawnDistance + " meters away is: " + terrainHeight);
 
             Vector3 spawnPosition = new Vector3(transform.position.x + spawnDistance, enemyShipPositionY + hit.point.y, 0);
         }

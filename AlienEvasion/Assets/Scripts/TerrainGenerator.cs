@@ -7,16 +7,16 @@ public class TerrainGenerator : MonoBehaviour
     [SerializeField] private SpriteShapeController spriteShapeController;
 
     // Length of the level in world units
-    [SerializeField, Range(3f, 500f)] private int levelLength = 100;
+    [SerializeField, Range(3f, 500f)] private int levelLength = 500;
 
     // Controls the horizontal stretch of the terrain
-    [SerializeField, Range(1f, 50f)] private float horizontalStretch = 2f;
+    [SerializeField, Range(1f, 50f)] private float horizontalStretch = 40f;
 
     // Controls the vertical stretch of the terrain
-    [SerializeField, Range(1f, 50f)] private float verticalStretch = 2f;
+    [SerializeField, Range(1f, 50f)] private float verticalStretch = 10f;
 
     // Controls the smoothness of the curves in the terrain
-    [SerializeField, Range(0f, 1f)] private float curveSmoothness = 0.5f;
+    [SerializeField, Range(0f, 1f)] private float curveSmoothness = 0.446f;
 
     // Step size for Perlin noise
     [SerializeField] private float noiseStep = 0.5f;
@@ -39,6 +39,23 @@ public class TerrainGenerator : MonoBehaviour
     private void ClearSpline()
     {
         spriteShapeController.spline.Clear();
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnLevelChanged += OnLevelChanged;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnLevelChanged -= OnLevelChanged;
+    }
+
+    private void OnLevelChanged(int level)
+    {
+        // Noise Step to be between 0.5 to 0.9 based on levels 0 to 5
+        noiseStep = 0.5f + (level * 0.1f);
+        OnValidate();
     }
 
     // Generates the terrain by creating a series of points along the spline

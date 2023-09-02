@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour
         instance = this;
         DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds) CreateAudioSource(s, gameObject);
-        Debug.Log($"{LogPrefix} created AudioSource object for each sound");
+        // Debug.Log($"{LogPrefix} created AudioSource object for each sound");
     }
 
     private void Start()
@@ -55,14 +55,14 @@ public class AudioManager : MonoBehaviour
     {
         Sound sound = GetSound(name);
         sound.source.Stop();
-        Debug.Log($"{LogPrefix} Stopped sound {name} from playing");
+        // Debug.Log($"{LogPrefix} Stopped sound {name} from playing");
         return sound;
     }
 
     public void StopAllSounds()
     {
         foreach (Sound s in sounds) s.source.Stop();
-        Debug.Log($"{LogPrefix} Stopped all sounds from playing");
+        // Debug.Log($"{LogPrefix} Stopped all sounds from playing");
     }
 
     public Sound SetSoundLocation(string name, Vector3 location)
