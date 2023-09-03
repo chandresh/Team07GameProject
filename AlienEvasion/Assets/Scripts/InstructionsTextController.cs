@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class InstructionsTextController : MonoBehaviour
 {
     //public Text instructionText;
-    public Image[] instructionImages;
-    public float firstImageDuration = 10f;
+    public GameObject[] instructionImages;
+    public float firstImageDuration = 5f;
     private bool isFirstImageShown = false;
 
     //Keep track of which buttons have been clicked
