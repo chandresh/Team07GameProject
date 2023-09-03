@@ -25,9 +25,12 @@ public class PlayerStatsController : MonoBehaviour
     // upgrade events
     public static event Action<int> ChangePlayerMaxHealth;
 
+    private AudioManager am;
+
     // Start is called before the first frame update
     void Start()
     {
+        am = FindObjectOfType<AudioManager>();
         currentCurrency = 0;
 
         maxHealth = 100;
@@ -120,6 +123,7 @@ public class PlayerStatsController : MonoBehaviour
         currentCurrency += amountToChange;
 
         SetPlayerCurrency?.Invoke(currentCurrency);
+        if (am.isPlaying("score")) am.Play("score");
     }
 
 

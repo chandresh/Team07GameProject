@@ -10,13 +10,17 @@ public class ShellController : MonoBehaviour
 
     private GameObject tank;
 
+    private AudioManager am;
+
     private void Start()
     {
+        am = FindObjectOfType<AudioManager>();
         shellRb = GetComponent<Rigidbody2D>();
         tank = GameObject.Find("Tank");
         float tankSpeed = tank.GetComponent<Rigidbody2D>().velocity.magnitude;
         shellSpeed = shellSpeed + tankSpeed;
         shellRb.velocity = transform.right * shellSpeed;
+        am.Play("shell-shoot");
     }
 
     // Destroy the shell when it leaves the screen
@@ -31,10 +35,12 @@ public class ShellController : MonoBehaviour
         // Destroy the shell if other object's tag is Ground
         if (other.gameObject.tag == "Ground")
         {
+            am.Play("explosion");
             Destroy(gameObject);
         }
         else if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "EnemyShip")
         {
+            am.Play("explosion");
             AlienEventsManager.AlienIsHit();
             // Debug.Log("Shell hit " + other.gameObject.tag);
             Destroy(other.gameObject);

@@ -8,9 +8,9 @@ public class Sound
     public string name; //key that will be used for audio clip
     public AudioClip clip; //clip object
     [Range(0f, 1f)]
-    public float volume; //volume of audio
+    public float volume = 1; //volume of audio
     [Range(-3f, 3f)]
-    public float pitch; //pitch of audio
+    public float pitch = 1; //pitch of audio
     [Range(-1f, 1f)]
     public float pan; //pan of audio, -1 being left, 0 being center, 1 being right
     public bool loop; //should the audio loop or not
