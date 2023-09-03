@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<int> OnLevelChanged;
     public static event Action OnGameWon;
+    public static event Action OnPlayerDeath;
     public static int CurrentLevel = 0;
     public static float TotalDistanceTraveled;
 
@@ -34,10 +35,18 @@ public class GameManager : MonoBehaviour
         return CurrentLevel >= levelDistances.Length;
     }
 
-    public void InitializeData()
+    public static void InitializeData()
     {
         CurrentLevel = 0;
         TotalDistanceTraveled = 0;
+    }
+
+    public static void PlayerDied()
+    {
+        OnPlayerDeath?.Invoke();
+        SceneManager.LoadScene("MainMenu");
+        // Reset the game data
+        InitializeData();
     }
 
     private void ChangeLevel()

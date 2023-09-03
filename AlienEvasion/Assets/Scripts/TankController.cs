@@ -41,6 +41,16 @@ public class TankController : MonoBehaviour
         am = FindObjectOfType<AudioManager>();
     }
 
+    // If the tank colides with an alien, destroy the alien and reduce the health of the tank
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            PlayerEventsManager.PlayerGotHit(-50);
+        }
+    }
+
     void FreezeTankMotion()
     {
         tire1Rb.freezeRotation = true;

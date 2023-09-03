@@ -115,6 +115,12 @@ public class PlayerStatsController : MonoBehaviour
             currentHealth += incDamage;
         }
 
+        // if currentHealth is less than or equal to 0 then broadcast player death
+        if (currentHealth <= 0)
+        {
+            GameManager.PlayerDied();
+        }
+
         SetPlayerHealth?.Invoke(currentHealth, currentShield);
     }
 
