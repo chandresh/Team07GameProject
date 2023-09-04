@@ -48,6 +48,7 @@ public class GameManager : MonoBehaviour
         PlayerStatsController playerStatsController = FindObjectOfType<PlayerStatsController>();
         if (gameOverController != null && playerStatsController != null)
         {
+            InitializeData();
             playerStatsController.ResetPlayerState();
             gameOverController.ActivateGameOverPanel();
 
