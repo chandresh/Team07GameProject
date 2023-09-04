@@ -45,10 +45,12 @@ public class GameManager : MonoBehaviour
     {
         OnPlayerDeath?.Invoke();
         GameOverController gameOverController = FindObjectOfType<GameOverController>();
-        if (gameOverController != null)
+        PlayerStatsController playerStatsController = FindObjectOfType<PlayerStatsController>();
+        if (gameOverController != null && playerStatsController != null)
         {
-            // Activate the game over panel using the controller
+            playerStatsController.ResetPlayerState();
             gameOverController.ActivateGameOverPanel();
+
         }
 
         //SceneManager.LoadScene("MainMenu");

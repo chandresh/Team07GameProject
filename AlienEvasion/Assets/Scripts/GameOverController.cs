@@ -30,20 +30,21 @@ public class GameOverController : MonoBehaviour
     public void ReturnToMainMenu()
     {
         // Load the main menu scene by name (adjust the scene name as needed)
-        GameManager.InitializeData();
+        
         SceneManager.LoadScene("MainMenu");
-
+        GameManager.InitializeData();
         // Reset any game data or player stats as needed
         // Call InitializeData() or similar methods if necessary
-        
+
     }
 
     public void RestartGame()
     {
         // Load the main menu scene by name (adjust the scene name as needed)
-        GameManager.InitializeData();
+       
         SceneManager.LoadScene("MainScene");
-        
+        GameManager.InitializeData();
+
     }
 
     // Other methods and variables can go here
