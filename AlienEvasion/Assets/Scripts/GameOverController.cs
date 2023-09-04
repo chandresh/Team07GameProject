@@ -15,6 +15,8 @@ public class GameOverController : MonoBehaviour
         {
             gameOverPanel.SetActive(true);
             
+            //stop the game
+            Time.timeScale = 0f;
             
         }
     }
@@ -32,7 +34,7 @@ public class GameOverController : MonoBehaviour
     public void ReturnToMainMenu()
     {
         // Load the main menu scene by name (adjust the scene name as needed)
-   
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
         GameManager.InitializeData();
 
@@ -41,7 +43,7 @@ public class GameOverController : MonoBehaviour
     public void RestartGame()
     {
         // Load the main menu scene by name (adjust the scene name as needed)
-       
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainScene");
         GameManager.InitializeData();
 
