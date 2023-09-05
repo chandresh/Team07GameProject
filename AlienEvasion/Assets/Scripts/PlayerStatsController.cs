@@ -59,6 +59,20 @@ public class PlayerStatsController : MonoBehaviour
         UpgradeEventsManager.onArmourUpgrade += armourUpgraded;
     }
 
+    private void OnDisable()
+    {
+        PlayerEventsManager.OnPlayerGotHit -= healthChange;
+        PlayerEventsManager.OnPlayerFuelChange -= changeFuel;
+        PlayerEventsManager.OnPlayerGainsCurrency -= increaseCurrency;
+
+        AlienEventsManager.OnAlienGotHit -= increaseCurrencyFromAlienHit;
+
+        // upgrade events
+        UpgradeEventsManager.OnHealthUpgrade -= healthUpgraded;
+        UpgradeEventsManager.OnShieldUpgrade -= shieldUpgraded;
+        UpgradeEventsManager.onArmourUpgrade -= armourUpgraded;
+    }
+
     private void armourUpgraded()
     {
         currentArmour++;
@@ -139,4 +153,17 @@ public class PlayerStatsController : MonoBehaviour
 
         SetPlayerFuel?.Invoke(currentFuel);
     }
+
+    public void ResetPlayerState()
+    {
+        // Reset the player's health, fuel, shields, and any other relevant state here
+        currentHealth = maxHealth;
+        currentFuel = maxFuel;
+        currentShield = maxShield;
+        currentArmour = 0;
+
+        // Reset any other player-related state as needed
+
+    }
+
 }

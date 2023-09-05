@@ -44,9 +44,19 @@ public class GameManager : MonoBehaviour
     public static void PlayerDied()
     {
         OnPlayerDeath?.Invoke();
-        SceneManager.LoadScene("MainMenu");
-        // Reset the game data
-        InitializeData();
+        GameOverController gameOverController = FindObjectOfType<GameOverController>();
+        PlayerStatsController playerStatsController = FindObjectOfType<PlayerStatsController>();
+        if (gameOverController != null && playerStatsController != null)
+        {
+            InitializeData();
+            playerStatsController.ResetPlayerState();
+            gameOverController.ActivateGameOverPanel();
+
+        }
+
+        //SceneManager.LoadScene("MainMenu");
+        //// Reset the game data
+        //InitializeData();
     }
 
     private void ChangeLevel()
