@@ -14,16 +14,29 @@ public class ShootTheShell : MonoBehaviour
 
     [SerializeField] private Transform shootingPosition;
 
+    private float baseFireDelay = 0.5f;
+    private float modifiedFireDelay; // Add this variable
 
-    private void Update()
+    private void Start()
     {
-        // If the player is holding the Fire1 button (space by default), fire the shell
+        modifiedFireDelay = baseFireDelay; // Initialize it with the base value
+    }
+
+    public void UpdateFireDelay(float newDelay)
+    {
+        modifiedFireDelay = newDelay;
+    }
+
+
+    void Update()
+    {
         if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + fireDelay;
+            nextFireTime = Time.time + modifiedFireDelay; // Use the modified fire delay
             Fire();
         }
     }
+
     void Fire()
     {
         // Instantiate the shell at the barrel's position plus some offset

@@ -20,6 +20,9 @@ public class UpgradeController : MonoBehaviour
     [SerializeField] private TMP_Text shieldUpgradeText;
     [SerializeField] private TMP_Text armourUpgradeText;
 
+    [SerializeField] private ShootTheShell shootTheShell; // Reference to the ShootTheShell script
+
+
     private bool isOpen;
 
     private int healthUpgradeLevel;
@@ -162,10 +165,17 @@ public class UpgradeController : MonoBehaviour
     public void shotSpeedUpgradePressed()
     {
         // make sure that upgrade isn't fully upgraded
-        if (shotSpeedUpgradeLevel < 3)
+        // check player can afford upgrade
+        if (checkCanAffordUpgrade(shotSpeedUpgradeCost))
         {
-            // increase upgrade level
+            // Increase the upgrade level
             shotSpeedUpgradeLevel++;
+
+            // Modify the fire delay based on the upgrade level (you can adjust this calculation)
+            float newFireDelay = 0.5f - (shotSpeedUpgradeLevel * 0.1f);
+
+            // Call the UpdateFireDelay method in the ShootTheShell script
+            shootTheShell.UpdateFireDelay(newFireDelay);
 
             changeBlockColour(shotSpeedUpgradeLevel - 1, shotSpeedUpgradeBlocks);
         }
@@ -214,20 +224,26 @@ public class UpgradeController : MonoBehaviour
 
     private void openUpgradeMenu()
     {
-        // pause the game
-        Time.timeScale = 0;
+        if (upgradeMenuCanvas != null)
+        {
+            // pause the game
+            Time.timeScale = 0;
 
-        // open the upgrade menu
-        upgradeMenuCanvas.SetActive(true);
+            // open the upgrade menu
+            upgradeMenuCanvas.SetActive(true);
+        }
     }
 
     private void closeUpgradeMenu()
     {
-        // close the upgrade menu
-        upgradeMenuCanvas.SetActive(false);
+        if (upgradeMenuCanvas != null)
+        {
+            // close the upgrade menu
+            upgradeMenuCanvas.SetActive(false);
 
-        // restart game
-        Time.timeScale = 1;
+            // restart game
+            Time.timeScale = 1;
+        }
     }
 
 }
