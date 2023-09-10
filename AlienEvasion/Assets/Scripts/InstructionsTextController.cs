@@ -19,9 +19,43 @@ public class InstructionsTextController : MonoBehaviour
         if (instructionImages.Length > 0)
         {
             instructionImages[0].gameObject.SetActive(true);
+
+            AdjustImageForScreenWidth(instructionImages[0]);
+
             Invoke("HideFirstImage", firstImageDuration);
         }
     }
+
+private void AdjustImageForScreenWidth(GameObject imageObject, bool isTopRight = false)
+{
+    RectTransform imageTransform = imageObject.GetComponent<RectTransform>();
+
+    // Get the screen width and height
+    float screenWidth = Screen.width;
+    float screenHeight = Screen.height;
+
+    // Calculate the desired width and height for the image based on screen width
+    float desiredWidth = -screenWidth * 0.35f; // You can adjust this value as needed
+    float desiredHeight = desiredWidth - Screen.height * 0.1f; // You can adjust this value as needed
+
+    // Set the size of the image
+    imageTransform.sizeDelta = new Vector2(desiredWidth, desiredHeight);
+
+    // Set the position of the image based on the specified location
+    if (isTopRight)
+    {
+        float xPos = screenWidth * 0.9f;
+        float yPos = screenHeight * 0.9f;
+        imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
+    }
+    else
+    {
+        float xPos = screenWidth * 0.6f;
+        float yPos = screenHeight * 0.85f;
+        imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
+    }
+}
+
 
     private void HideFirstImage()
     {
@@ -30,6 +64,13 @@ public class InstructionsTextController : MonoBehaviour
         {
             instructionImages[0].gameObject.SetActive(false);
             isFirstImageShown = true; // Set the flag to true after hiding the first image
+
+            // Show the second image
+            if (instructionImages.Length > 1)
+            {
+                instructionImages[1].gameObject.SetActive(true);
+                AdjustImageForScreenWidth(instructionImages[1], isTopRight: true);
+            }
         }
     }
 
