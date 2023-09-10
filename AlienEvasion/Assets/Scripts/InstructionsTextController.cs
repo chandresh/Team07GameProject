@@ -45,7 +45,7 @@ private void AdjustImageForScreenWidth(GameObject imageObject, bool isTopRight =
     if (isTopRight)
     {
         float xPos = screenWidth * 0.9f;
-        float yPos = screenHeight * 0.9f;
+        float yPos = screenHeight * 0.92f;
         imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
     }
     else
