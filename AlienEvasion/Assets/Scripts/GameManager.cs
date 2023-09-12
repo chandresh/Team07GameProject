@@ -58,6 +58,11 @@ public class GameManager : MonoBehaviour
         //// Reset the game data
         //InitializeData();
     }
+    public void NotifyLevelChanged()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        OnLevelChanged?.Invoke(CurrentLevel);
+    }
 
     private void ChangeLevel()
     {
@@ -71,8 +76,14 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            OnLevelChanged?.Invoke(CurrentLevel);
+            LevelChangeController levelChangeController = FindObjectOfType<LevelChangeController>();
+            if (levelChangeController != null)
+            {
+                levelChangeController.ActivateLevelChangePanel();
+            }
+            //print(SceneManager.GetActiveScene().buildIndex);
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            //OnLevelChanged?.Invoke(CurrentLevel);
         }
     }
 
