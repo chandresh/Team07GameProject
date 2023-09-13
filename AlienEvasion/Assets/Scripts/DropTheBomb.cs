@@ -25,11 +25,12 @@ public class DropTheBomb : MonoBehaviour
     void DropBomb()
     {
         // Instantiate the alienBombPrefab at dropPosition with a random rotation / angle
-        // Only if there is up to 3 alienBombPrefab present
+        // Only if there are less than GameManager.CurrentLevel + 1 prefabs already in the scene
+        // This will make the game challenging as the level increases
 
         GameObject[] existingBombs = GameObject.FindGameObjectsWithTag("AlienBomb");
 
-        if (existingBombs.Length < 3)
+        if (existingBombs.Length < GameManager.CurrentLevel + 1)
         {
             GameObject alienBomb = Instantiate(alienBombPrefab, dropPosition.position, Quaternion.Euler(0, 0, Random.Range(0, 360)));
             alienBomb.GetComponent<Rigidbody2D>().velocity = new Vector2(Random.Range(-5, 5), Random.Range(-5, 5));
