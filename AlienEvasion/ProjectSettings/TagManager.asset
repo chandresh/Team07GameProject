@@ -12,6 +12,7 @@ TagManager:
   - EnemyShip
   - AlienBomb
   - PlayerParts
+  - FallBackTrigger
   layers:
   - Default
   - TransparentFX
