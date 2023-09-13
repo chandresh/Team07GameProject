@@ -6,6 +6,8 @@ using UnityEngine;
 public class TankController : MonoBehaviour
 {
 
+    // Reference to the instructions information panel
+    [SerializeField] GameObject instructionImage;
     // Variable to reference the Rigidbody of the tank
     Rigidbody2D tankRb;
 
@@ -58,6 +60,12 @@ public class TankController : MonoBehaviour
         tire3Rb.freezeRotation = true;
     }
 
+    void HideInstructionPanel()
+    {
+        // Hide the instruction panel
+        instructionImage.SetActive(false);
+    }
+
     void UnFreezeTankMotion()
     {
         tire1Rb.freezeRotation = false;
@@ -85,9 +93,14 @@ public class TankController : MonoBehaviour
         // Add Torque to all the tires and car body
         float tankTorque = tankMovement * tankSpeed * Time.fixedDeltaTime;
 
-
+        // The player has started moving the tank, unfreeze the tank motion
+        // Also hide the instruction panel
         if (tankTorque != 0)
         {
+            // Hide the instruction panel after half second
+            Invoke("HideInstructionPanel", 0.5f);
+
+            // Unfreeze the tank motion
             UnFreezeTankMotion();
         }
 

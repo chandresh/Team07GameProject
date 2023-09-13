@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class InstructionPanel : MonoBehaviour
 {
+    // Reference to the instructions information panel
     public GameObject instructionPanel;
 
     private void Start()
@@ -16,7 +17,6 @@ public class InstructionPanel : MonoBehaviour
         // Check for input to show/hide the instruction panel
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Console.WriteLine("I key was pressed");
             ToggleInstructionPanel();
         }
     }
