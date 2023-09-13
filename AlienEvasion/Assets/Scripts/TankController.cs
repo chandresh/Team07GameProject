@@ -49,7 +49,7 @@ public class TankController : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
-            PlayerEventsManager.PlayerGotHit(-50);
+            PlayerEventsManager.PlayerGotHit(-10);
         }
     }
 
