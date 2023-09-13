@@ -21,6 +21,7 @@ public class GenerateEnemies : MonoBehaviour
     [SerializeField] private LayerMask terrainLayer;
 
 
+    // Create enemies at a certain distance from the player
     void InstantiateEnemiesOfType(GameObject prefab, float positionY, float spawnDistance)
     {
         Vector3 checkPosition = new Vector3(Camera.main.transform.position.x + spawnDistance, 50, 0);
@@ -35,26 +36,6 @@ public class GenerateEnemies : MonoBehaviour
             Instantiate(prefab, spawnPosition, Quaternion.identity);
         }
     }
-
-    // Used for debugging for terrain height
-    void checkTerrainHeight(float spawnDistance)
-    {
-        // check height using main camera
-        Vector3 checkPosition = new Vector3(Camera.main.transform.position.x + spawnDistance, 50, 0);
-        RaycastHit2D hit = Physics2D.Raycast(checkPosition, Vector2.down, 100, terrainLayer);
-
-        // Generate a debug ray
-        // Debug.DrawRay(checkPosition, Vector2.down * 100, Color.red);
-
-        if (hit.collider != null)
-        {
-            float terrainHeight = hit.point.y;
-            // Debug.Log("Terrain height " + spawnDistance + " meters away is: " + terrainHeight);
-
-            Vector3 spawnPosition = new Vector3(transform.position.x + spawnDistance, enemyShipPositionY + hit.point.y, 0);
-        }
-    }
-
 
     void Update()
     {
