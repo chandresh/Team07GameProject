@@ -10,7 +10,7 @@ using UnityEngine;
 public class GenerateEnemies : MonoBehaviour
 {
 
-    [SerializeField] GameObject enemyPrefab, enemyShipPrefab;
+    [SerializeField] GameObject enemyPrefab, enemy2Prefab, enemy3Prefab, enemyShipPrefab;
 
     [SerializeField] private float enemySpawnDistance = 12f;
     [SerializeField] private float enemyShipSpawnDistance = 22f;

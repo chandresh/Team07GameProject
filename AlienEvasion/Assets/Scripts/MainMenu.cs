@@ -3,13 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public void changeScene(string sceneName)
+    public void OnImageClick()
     {
-        SceneManager.LoadScene(sceneName);
-    }
-
-    public void GoToMainScreen()
-    {
+        Debug.Log("Image clicked!");
         SceneManager.LoadScene("MainScene");
     }
+
 }
