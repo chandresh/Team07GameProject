@@ -10,7 +10,8 @@ using UnityEngine;
 public class GenerateEnemies : MonoBehaviour
 {
 
-    [SerializeField] GameObject enemyPrefab, enemy2Prefab, enemy3Prefab, enemyShipPrefab;
+    [SerializeField] GameObject enemyShipPrefab;
+    [SerializeField] GameObject[] enemyPrefabs;
 
     [SerializeField] private float enemySpawnDistance = 12f;
     [SerializeField] private float enemyShipSpawnDistance = 22f;
@@ -19,6 +20,7 @@ public class GenerateEnemies : MonoBehaviour
     [SerializeField] private float enemyShipPositionY = 3.76f;
 
     [SerializeField] private LayerMask terrainLayer;
+
 
 
     // Create enemies at a certain distance from the player
@@ -43,16 +45,8 @@ public class GenerateEnemies : MonoBehaviour
 
         if (enemies.Length == 0)
         {
-            InstantiateEnemiesOfType(enemyPrefab, enemyPositionY, enemySpawnDistance);
-        }
-
-        foreach (GameObject enemy in enemies)
-        {
-            if (enemy.transform.position.x < transform.position.x - 5) // If the enemy is off-screen
-            {
-                InstantiateEnemiesOfType(enemyPrefab, enemyPositionY, enemySpawnDistance);
-                Destroy(enemy); // Destroy the current off-screen enemy
-            }
+            GameObject randomEnemy = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
+            InstantiateEnemiesOfType(randomEnemy, enemyPositionY, enemySpawnDistance);
         }
 
         GameObject[] enemyShips = GameObject.FindGameObjectsWithTag("EnemyShip");
