@@ -32,7 +32,7 @@ public class ShootTheShell : MonoBehaviour
     {
         if (Input.GetButton("Fire1") && Time.time >= nextFireTime)
         {
-            nextFireTime = Time.time + modifiedFireDelay; // Use the modified fire delay
+            nextFireTime = Time.time + modifiedFireDelay;
             Fire();
         }
     }

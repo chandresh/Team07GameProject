@@ -83,7 +83,7 @@ public class TerrainGenerator : MonoBehaviour
         return perlinValue * sinValue;
     }
 
-    // Sets the curvature of the terrain at the given index
+    // Sets the curve of the terrain at the given index
     private void SetTerrainCurvature(int i)
     {
         if (i != 0 && i != levelLength - 1)

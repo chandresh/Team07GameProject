@@ -15,8 +15,7 @@ public class InstructionsTextController : MonoBehaviour
 
     private void Start()
     {
-        //instructionImages[1].gameObject.SetActive(true);
-        //AdjustImageForScreenWidth(instructionImages[1], isTopRight: true);
+
         // Show the first image at the start of the game
         if (instructionImages.Length > 0)
         {
@@ -28,35 +27,35 @@ public class InstructionsTextController : MonoBehaviour
         }
     }
 
-private void AdjustImageForScreenWidth(GameObject imageObject, bool isTopRight = false)
-{
-    RectTransform imageTransform = imageObject.GetComponent<RectTransform>();
-
-    // Get the screen width and height
-    float screenWidth = Screen.width;
-    float screenHeight = Screen.height;
-
-    // Calculate the desired width and height for the image based on screen width
-    float desiredWidth = -screenWidth * 0.35f; // You can adjust this value as needed
-    float desiredHeight = desiredWidth - Screen.height * 0.1f; // You can adjust this value as needed
-
-    // Set the size of the image
-    imageTransform.sizeDelta = new Vector2(desiredWidth, desiredHeight);
-
-    // Set the position of the image based on the specified location
-    if (isTopRight)
+    private void AdjustImageForScreenWidth(GameObject imageObject, bool isTopRight = false)
     {
-        float xPos = screenWidth * 0.9f;
-        float yPos = screenHeight * 0.92f;
-        imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
+        RectTransform imageTransform = imageObject.GetComponent<RectTransform>();
+
+        // Get the screen width and height
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        // Calculate the desired width and height for the image based on screen width
+        float desiredWidth = -screenWidth * 0.35f;
+        float desiredHeight = desiredWidth - Screen.height * 0.1f;
+
+        // Set the size of the image
+        imageTransform.sizeDelta = new Vector2(desiredWidth, desiredHeight);
+
+        // Set the position of the image based on the specified location
+        if (isTopRight)
+        {
+            float xPos = screenWidth * 0.9f;
+            float yPos = screenHeight * 0.92f;
+            imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
+        }
+        else
+        {
+            float xPos = screenWidth * 0.6f;
+            float yPos = screenHeight * 0.85f;
+            imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
+        }
     }
-    else
-    {
-        float xPos = screenWidth * 0.6f;
-        float yPos = screenHeight * 0.85f;
-        imageTransform.position = new Vector3(xPos, yPos, imageTransform.position.z);
-    }
-}
 
 
     private void HideFirstImage()
@@ -116,7 +115,6 @@ private void AdjustImageForScreenWidth(GameObject imageObject, bool isTopRight =
         if (Input.GetKeyDown(KeyCode.D)) clickedButtons.Add(KeyCode.D);
         if (Input.GetMouseButtonDown(0)) clickedButtons.Add(KeyCode.Mouse0);
         if (Input.GetKeyDown(KeyCode.Escape)) clickedButtons.Add(KeyCode.Escape);
-        // if (Input.GetKeyDown(KeyCode.I)) clickedButtons.Add(KeyCode.I);
 
         // Check if all the specified buttons have been clicked
         if (clickedButtons.Count == 6)

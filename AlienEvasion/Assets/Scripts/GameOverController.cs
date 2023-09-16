@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class GameOverController : MonoBehaviour
 {
     public GameObject gameOverPanel;
-    //public GameManager gameManager;
 
     // Activate the game over panel
     public void ActivateGameOverPanel()
@@ -14,10 +13,10 @@ public class GameOverController : MonoBehaviour
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
-            
+
             //stop the game
             Time.timeScale = 0f;
-            
+
         }
     }
 
@@ -49,5 +48,4 @@ public class GameOverController : MonoBehaviour
 
     }
 
-    // Other methods and variables can go here
 }

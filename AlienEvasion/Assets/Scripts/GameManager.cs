@@ -73,10 +73,6 @@ public class GameManager : MonoBehaviour
             gameOverController.ActivateGameOverPanel();
 
         }
-
-        //SceneManager.LoadScene("MainMenu");
-        //// Reset the game data
-        //InitializeData();
     }
     public void NotifyLevelChanged()
     {
