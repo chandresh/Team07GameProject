@@ -15,6 +15,8 @@ public class InstructionsTextController : MonoBehaviour
 
     private void Start()
     {
+        //instructionImages[1].gameObject.SetActive(true);
+        //AdjustImageForScreenWidth(instructionImages[1], isTopRight: true);
         // Show the first image at the start of the game
         if (instructionImages.Length > 0)
         {
@@ -95,6 +97,13 @@ private void AdjustImageForScreenWidth(GameObject imageObject, bool isTopRight =
         if (!isFirstImageShown)
         {
             CheckButtonsClicked();
+        }
+
+        // check if the first image is not active
+        if (!instructionImages[0].activeSelf)
+        {
+            instructionImages[1].gameObject.SetActive(true);
+            AdjustImageForScreenWidth(instructionImages[1], isTopRight: true);
         }
 
     }
