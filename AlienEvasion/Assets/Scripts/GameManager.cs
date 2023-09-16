@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -8,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static event Action<int> OnLevelChanged;
+    [SerializeField] Scrollbar levelScrollbar;
     public static event Action OnGameWon;
     public static event Action OnPlayerDeath;
     public static int CurrentLevel = 0;
@@ -22,6 +24,18 @@ public class GameManager : MonoBehaviour
         if (IsLevelChanged())
         {
             ChangeLevel();
+        }
+
+        UpdateLevelUI();
+    }
+
+    void UpdateLevelUI()
+    {
+        if (levelScrollbar != null)
+        {
+            float levelDistance = levelDistances[CurrentLevel] * 100f;
+            float totalCurrentDistance = TotalDistanceTraveled * 100f;
+            levelScrollbar.size = totalCurrentDistance / levelDistance;
         }
     }
 
