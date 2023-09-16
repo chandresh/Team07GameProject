@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is used to make the alien ship drop bombs
 public class DropTheBomb : MonoBehaviour
 {
 

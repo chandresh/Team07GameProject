@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class is used to make the camera follow the tank
 public class FollowTheTank : MonoBehaviour
 {
 
@@ -10,14 +11,12 @@ public class FollowTheTank : MonoBehaviour
 
     private Vector3 cameraOffset;
 
-    // Start is called before the first frame update
     void Start()
     {
         // Store the original difference between camera and tank positions
         cameraOffset = transform.position - tankTransform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Set the camera position so that the camera follows the tank

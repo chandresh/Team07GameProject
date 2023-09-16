@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using TMPro;
 
+// This class is used to keep track of the coins collected by the player
+
 public class CurrencyCounter : MonoBehaviour
 {
     public static CurrencyCounter instance;

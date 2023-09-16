@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// This class is used to make the enemy move in a sine wave pattern
 public class EnemyMovement : MonoBehaviour
 {
     float verticalSpeed = 0.0f;
