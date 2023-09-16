@@ -115,12 +115,22 @@ public class TankController : MonoBehaviour
     public void SetTotalDistanceTraveled()
     {
         float horizontalVelocity = tankRb.velocity.x;
-
-        // Only update distance if the tank is moving forward
+        float distanceThisFrame = horizontalVelocity * Time.fixedDeltaTime * unityToKilometers;
+        // If the tank is moving forward update the distance
         if (horizontalVelocity > 0)
         {
-            float distanceThisFrame = horizontalVelocity * Time.fixedDeltaTime * unityToKilometers;
             totalDistanceTraveled += Mathf.Abs(distanceThisFrame);
+        }
+        // If the tank is going backwards subtract the distance
+        else if (horizontalVelocity < 0)
+        {
+            totalDistanceTraveled -= Mathf.Abs(distanceThisFrame);
+
+            // If the distance goes in negative sett to zero
+            if (totalDistanceTraveled < 0)
+            {
+                totalDistanceTraveled = 0;
+            }
         }
     }
 
