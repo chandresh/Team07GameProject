@@ -26,6 +26,7 @@ public class PlayerStatsController : MonoBehaviour
     public static event Action<int> ChangePlayerMaxHealth;
 
     private AudioManager am;
+    [SerializeField] SpriteRenderer tankSpriteRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -106,7 +107,7 @@ public class PlayerStatsController : MonoBehaviour
     {
         // remove current armour value from incoming damage
         int incDamage = healthChange -= currentArmour;
-
+        StartCoroutine(IndicateDamage());
         if (currentShield > 0)
         {
             // the player has some shields to take form first
@@ -136,6 +137,15 @@ public class PlayerStatsController : MonoBehaviour
         }
 
         SetPlayerHealth?.Invoke(currentHealth, currentShield);
+    }
+    IEnumerator IndicateDamage()
+    {
+        // Color the tank body red for a short duration to indicate damage
+        tankSpriteRenderer.color = Color.red;
+        // Wait for 0.2 seconds
+        yield return new WaitForSeconds(0.2f);
+        // Change the color back to white
+        tankSpriteRenderer.color = Color.white;
     }
 
     private void increaseCurrency(int amountToChange)
