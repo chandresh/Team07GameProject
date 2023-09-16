@@ -5,11 +5,14 @@ using UnityEngine.UI;
 using System;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
     public static event Action<int> OnLevelChanged;
     [SerializeField] Scrollbar levelScrollbar;
+    [SerializeField] TMPro.TextMeshProUGUI levelProgressText;
+
     public static event Action OnGameWon;
     public static event Action OnPlayerDeath;
     public static int CurrentLevel = 0;
@@ -31,12 +34,15 @@ public class GameManager : MonoBehaviour
 
     void UpdateLevelUI()
     {
+        float levelDistance = levelDistances[CurrentLevel] * 100f;
+        float totalCurrentDistance = TotalDistanceTraveled * 100f;
+
         if (levelScrollbar != null)
         {
-            float levelDistance = levelDistances[CurrentLevel] * 100f;
-            float totalCurrentDistance = TotalDistanceTraveled * 100f;
             levelScrollbar.size = totalCurrentDistance / levelDistance;
         }
+
+        levelProgressText.text = $"completed {totalCurrentDistance:0.00} of {levelDistance:0.00}";
     }
 
     private bool IsLevelChanged()
@@ -81,6 +87,8 @@ public class GameManager : MonoBehaviour
     private void ChangeLevel()
     {
         CurrentLevel++;
+        levelProgressText.text = "";
+
         if (IsGameWon())
         {
             OnGameWon?.Invoke();
@@ -95,9 +103,7 @@ public class GameManager : MonoBehaviour
             {
                 levelChangeController.ActivateLevelChangePanel();
             }
-            //print(SceneManager.GetActiveScene().buildIndex);
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            //OnLevelChanged?.Invoke(CurrentLevel);
+
         }
     }
 
