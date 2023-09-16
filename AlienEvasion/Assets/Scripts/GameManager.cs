@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             levelScrollbar.size = totalCurrentDistance / levelDistance;
         }
 
-        levelProgressText.text = $"completed {totalCurrentDistance:0.00} of {levelDistance:0.00}";
+        levelProgressText.text = $"completed {totalCurrentDistance:0} of {levelDistance:0} Distance Goal";
     }
 
     private bool IsLevelChanged()
