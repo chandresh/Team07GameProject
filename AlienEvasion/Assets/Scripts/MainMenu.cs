@@ -1,12 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Load main scene when user clicks on the main menu or presses enter
 public class MainMenu : MonoBehaviour
 {
-    public void OnImageClick()
+    private void Update()
     {
-        Debug.Log("Image clicked!");
-        SceneManager.LoadScene("MainScene");
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            LoadMainScene();
+        }
+    }
+    void OnMouseDown()
+    {
+        LoadMainScene();
     }
 
+    void LoadMainScene()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
